@@ -1,25 +1,13 @@
-# State
+# 📚 VLA Glossary
 
-## Definition
+This glossary is a living document that grows throughout the 90-day VLA Learning Lab.
 
-The complete description of the environment, including information that the robot may not directly observe.
-
-## Why it Exists
-
-The environment always contains more information than a robot can sense.
-
-## Example
-
-A self-driving car cannot directly know every pedestrian's intention.
-
-## Related Terms
-
-- Observation
-- State Space
-- Sensor
-
-## Interview Question
-
-What is the difference between State and Observation?
+| Term | Definition | Learned | Confidence |
+|------|------------|:-------:|:----------:|
+| **State** | The complete description of the environment, including information the robot may not directly access. | Day 2 | ⭐⭐☆☆☆ |
+| **Observation** | The information actually available to the robot at a given moment. | Day 2 | ⭐⭐⭐☆☆ |
+| **Sensor** | A device that converts physical information into observations. | Day 2 | ⭐⭐⭐⭐☆ |
+| **State Space** | The set of all possible states of the environment. | Day 2 | ⭐⭐☆☆☆ |
+| **Observation Space** | The set of all possible observations the robot can receive. | Day 2 | ⭐⭐⭐☆☆ |
 
 ---
