@@ -19,7 +19,6 @@
 | **Robot Arm (Manipulator)** | A robotic mechanism with multiple joints used to reach, grasp, or manipulate objects. The Reacher environment is a simple example of a robotic arm. | Day 1 | Day 1 | ⭐⭐⭐⭐☆ |
 | **Joint** | A movable connection between robot links that allows rotational or translational motion. | Day 1 | Day 1 | ⭐⭐⭐☆☆ |
 | **End-Effector** | The endpoint of a robot arm (for example, a gripper or tool) that interacts directly with the environment. | Day 1 | Day 1 | ⭐⭐⭐☆☆ || Term | Definition | First Learned | Last Reviewed | Confidence |
-|------|------------|:-------------:|:-------------:|:----------:|
 | **Policy** | The robot's **brain**—a decision-making function that maps observations (or states) to actions, determining what the robot should do next. In modern AI systems, policies are typically implemented as neural networks. | Day 2 | Day 2 | ⭐⭐☆☆☆ |
 
 
