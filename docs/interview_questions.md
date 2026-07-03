@@ -59,3 +59,40 @@ Since $J$ is easy to calculate analytically from the forward kinematics, this me
 ### Answer:
 - **Passive Simulation**: The system moves solely due to external forces (such as gravity, contact, damping, or initial momentum). No control signals or actuator forces are actively applied. For example, simulating a ball falling or a pendulum swinging freely.
 - **Active Simulation**: Actuators actively apply joint forces or torques computed by an external controller or policy at each timestep. This allows the system to perform goal-directed behaviors, like a robotic arm reaching toward a point.
+
+---
+
+## Question 6: What is the math behind the reward function of Gymnasium's Reacher environment, and how does it balance path efficiency and power usage?
+
+### Answer:
+The reward $R_t$ at step $t$ in the Reacher environment is designed to guide the agent to the target while minimizing excessive control effort:
+$$R_t = -d_{\text{fingertip, target}} - \|\mathbf{a}_t\|^2$$
+Where:
+1. **Distance Penalty** ($-d_{\text{fingertip, target}}$): The negative Euclidean distance between the fingertip and the target. This term dominates the signal, encouraging the policy to drive the error to zero.
+2. **Control Effort Penalty** ($-\|\mathbf{a}_t\|^2$): The negative sum of squared actuator torques applied at the current step. This penalizes rapid, jerky joint commands, encouraging smooth, energy-efficient trajectories and protecting physical motor gears from high-frequency wear.
+
+---
+
+## Question 7: Explain the difference between `terminated` and `truncated` in the Gymnasium step function returns, and why it is important to distinguish them in Reinforcement Learning.
+
+### Answer:
+Gymnasium separates episode ending conditions into two flags:
+- **`terminated`**: Indicates that the episode ended naturally due to reaching a terminal state defined by the MDP task design (e.g. falling over, reaching the target goal, or failing irreversibly). In these cases, no further rewards are possible.
+- **`truncated`**: Indicates that the episode was cut short due to an external agent-independent constraint (e.g. reaching a step limit like 50/100 steps, or manual operator override).
+
+In Reinforcement Learning, distinguishing these is crucial for bootstrapping and value estimation. If an episode is truncated, the agent's value function should bootstrap (predict future returns from the final state) because the task wasn't finished. If terminated, the target value is simply the immediate reward since no future states exist.
+
+---
+
+## Question 8: What is a "Transition" in Markov Decision Processes (MDPs), and what are its components?
+
+### Answer:
+A transition is the fundamental unit of interaction between an RL agent and its environment. It represents a single step of experience and is defined by the tuple:
+$$\left(s_t, a_t, r_t, s_{t+1}, d_t\right)$$
+Where:
+- $s_t$: The state (or observation) at time step $t$.
+- $a_t$: The action chosen by the policy at time step $t$.
+- $r_t$: The scalar reward received from the environment.
+- $s_{t+1}$: The resulting state (or observation) at time step $t+1$.
+- $d_t$: The done/termination flag indicating if the transition led to an absorbing state.
+
