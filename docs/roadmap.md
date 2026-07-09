@@ -30,7 +30,7 @@ gantt
 
 ### Week 1: MuJoCo and Gymnasium Fundamentals (Current)
 - **Goal**: Understand physics solvers, step functions, observations, actions, and basic control theory.
-- **Topics**: MjModel vs MjData, Gymnasium environment loops, Reacher-v5 kinematics, torque control dynamics, Transpose Jacobian feedback control, random and fixed policies, exploration vs exploitation, and policy performance comparisons.
+- **Topics**: MjModel vs MjData, Gymnasium environment loops, Reacher-v5 kinematics, torque control dynamics, Transpose Jacobian feedback control, random and fixed policies, exploration vs exploitation, policy performance comparisons, robot control loops, tracking errors, and proportional controllers.
 
 ### Week 2: Robotic Control Frameworks
 - **Goal**: Design precise joint-space and Cartesian-space trajectory tracking.

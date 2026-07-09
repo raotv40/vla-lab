@@ -47,11 +47,17 @@ vla-lab/
 ├── .github/                 # GitHub Action workflows and CI configs
 ├── assets/                  # Simulation visual plots and media assets
 ├── docs/                    # Architectural documents and study notes
+│   ├── concepts/            # Core control theory and robotics concepts
+│   │   ├── controller.md    # Robot controller definition
+│   │   ├── error.md         # Tracking error mathematical derivation
+│   │   ├── feedback.md      # Open-loop vs closed-loop feedback systems
+│   │   └── proportional_controller.md # Proportional control laws
 │   ├── journal/             # Daily progress journals
 │   │   ├── day01.md         # Setup and passive simulation
 │   │   ├── day02.md         # Observations, actions, and Jacobian control
 │   │   ├── day03.md         # Reward dynamics and step transitions
-│   │   └── day04.md         # Random policy and exploration
+│   │   ├── day04.md         # Random policy and exploration
+│   │   └── day05.md         # Proportional control loops
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -65,7 +71,8 @@ vla-lab/
 │   ├── lab05_policy.py      # Transpose Jacobian feedback policy
 │   ├── lab06_reward_episode.py # Reward and episode mechanics
 │   ├── lab07_random_policy.py  # Random policy exploration
-│   └── lab08_compare_policies.py # Policy comparison metrics
+│   ├── lab08_compare_policies.py # Policy comparison metrics
+│   └── lab09_simple_controller.py # Proportional control loop demo
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -91,8 +98,9 @@ vla-lab/
 - **[Curriculum Roadmap](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/roadmap.md)**: A detailed week-by-week curriculum overview.
 - **[Terminology Glossary](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/glossary.md)**: Standard concepts and definitions in robotics.
 - **[Interview Questions](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/interview_questions.md)**: Study Q&As for robotics and VLA concepts.
-- Progress Journals:
+- **Progress Journals**:
   - **[Day 1 Journal: Setup & Passive Sim](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day01.md)**
   - **[Day 2 Journal: Observations, Actions & Jacobian Control](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day02.md)**
   - **[Day 3 Journal: Reward & Episode Dynamics](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day03.md)**
   - **[Day 4 Journal: Random Policy & Exploration Baseline](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day04.md)**
+  - **[Day 5 Journal: Proportional Control Loops](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day05.md)**

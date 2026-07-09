@@ -134,4 +134,50 @@ Where:
   $$G_t \leq \frac{R_{\max}}{1 - \gamma}$$
 - **Physical Interpretation**: $\gamma$ balances the agent's preference for immediate gratification ($\gamma \to 0$) vs. long-term planning ($\gamma \to 1$).
 
+---
+
+# Day 5: Controllers, Feedback Control, and Proportional Control
+
+## Beginner: What is a robot control loop, and what are its core components?
+
+### Answer:
+A **robot control loop** is a continuous feedback cycle that enables a robot to regulate its state (e.g. position, velocity, or torque) to match a desired setpoint. Its core components are:
+1. **Setpoint ($r$)**: The target state (e.g. desired joint angle or coordinate).
+2. **Controller**: The algorithm (e.g. proportional controller) that calculates necessary correction commands.
+3. **Plant/Actuator**: The physical robot mechanism (e.g. joints, motors) being controlled.
+4. **Sensor**: The measuring instrument (e.g. encoders, cameras) that reads the actual state.
+5. **Feedback Loop**: The path that routes the measured output back to the input to compute the error signal:
+   $$e = r - y$$
+
+---
+
+## Intermediate: Explain the proportional control law mathematically and discuss the physical role of the gain coefficient ($K_p$).
+
+### Answer:
+Proportional control calculates corrective commands $u(t)$ directly scaled by the current tracking error $e(t)$:
+$$u(t) = K_p \cdot e(t)$$
+Where:
+- **$e(t) = r(t) - y(t)$**: The difference between the setpoint and process output.
+- **$K_p$**: The Proportional Gain coefficient.
+
+The physical role of $K_p$ is to scale the controller's responsiveness:
+- **High $K_p$**: Large actuator inputs are applied for even small errors, causing the robot to react quickly. However, this raises the risk of overshooting the target and causing high-frequency oscillations or mechanical instability.
+- **Low $K_p$**: Small correction inputs are applied, leading to smooth, stable, but sluggish joint tracking.
+
+---
+
+## Advanced: If we implement a pure proportional (P) controller to regulate a robotic joint against gravity, why does it suffer from steady-state error? How is this resolved in classical control?
+
+### Answer:
+A pure Proportional (P) controller requires a non-zero error to generate any non-zero control output ($u = K_p \cdot e$). 
+
+To hold a robotic joint at a specific position against gravity, the motors must continuously exert a static torque ($\tau_g$) to balance the gravitational forces. Under a pure P-controller, the motor torque is zero when error is zero ($e = 0$). As a result, the arm will sag under gravity until it reaches an equilibrium point where the tracking error is large enough to generate exactly the holding torque needed:
+$$e_{\text{steady-state}} = \frac{\tau_g}{K_p}$$
+This offset is called **steady-state error**. 
+
+In classical control theory, this is resolved by:
+1. **Integral Action (I)**: Adding an integral term ($\int e(t)dt$) that accumulates error over time, continuously increasing control torque until the steady-state error is driven to exactly zero.
+2. **Gravity Compensation**: Adding a model-based feedforward term ($\tau_{\text{ff}} = \tau_g(\theta)$) to directly cancel gravity, allowing the feedback controller to focus purely on path deviations.
+
+
 

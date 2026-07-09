@@ -21,7 +21,7 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Reset** | A function (`env.reset()`) that starts a new episode by initializing the environment and returning the first observation. | Day 1 | Day 1 | ⭐⭐⭐⭐⭐ |
 | **Robot Arm (Manipulator)** | A robotic mechanism with multiple joints used to reach, grasp, or manipulate objects. | Day 1 | Day 1 | ⭐⭐⭐⭐☆ |
 | **Active Simulation** | Simulating a model where actuators actively apply forces or torques computed by a control policy. | Day 2 | Day 2 | ⭐⭐⭐⭐⭐ |
-| **Closed-Loop Control** | A feedback control system where the controller reads state observations to compute and adjust control actions. | Day 2 | Day 2 | ⭐⭐⭐⭐⭐ |
+| **Closed-Loop Control** | A feedback control system where the controller reads state observations to compute and adjust control actions. | Day 2 | Day 5 | ⭐⭐⭐⭐⭐ |
 | **Forward Kinematics** | Calculating the Cartesian position $(x, y)$ of the end-effector (fingertip) given the joint angles $(\theta_1, \theta_2)$. | Day 2 | Day 2 | ⭐⭐⭐⭐☆ |
 | **Jacobian Matrix** | A matrix of first-order partial derivatives relating joint velocities to linear/angular velocities of the end-effector. | Day 2 | Day 2 | ⭐⭐⭐⭐☆ |
 | **Policy** | The robot's decision-making function that maps observations to actions, determining what the robot should do next. | Day 2 | Day 4 | ⭐⭐⭐⭐⭐ |
@@ -41,3 +41,9 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Exploration** | The decision-making strategy where the agent takes novel actions to gather new information about the environment, potentially discovering higher rewards. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
 | **Fixed Policy** | A deterministic decision-making rule where the agent always selects the same pre-determined action or trajectory regardless of observations. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
 | **Random Policy** | A policy that selects actions uniformly at random from the action space, used to establish a baseline performance and promote maximum exploration. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
+| **Controller** | A hardware or software component in a control loop that calculates control actions to drive the system toward a desired setpoint. | Day 5 | Day 5 | ⭐⭐⭐⭐⭐ |
+| **Error** | The mathematical difference between the desired setpoint and the actual measured state of the system ($e = r - y$). | Day 5 | Day 5 | ⭐⭐⭐⭐⭐ |
+| **Feedback** | The process of returning output signals as inputs in a system control loop to dynamically adjust subsequent actions. | Day 5 | Day 5 | ⭐⭐⭐⭐⭐ |
+| **Gain (Kp)** | A proportional tuning coefficient that scales the tracking error signal to determine the magnitude of the control input. | Day 5 | Day 5 | ⭐⭐⭐⭐⭐ |
+| **Open-Loop Control** | A control strategy where the control action is pre-determined and does not use feedback from the system's output. | Day 5 | Day 5 | ⭐⭐⭐⭐⭐ |
+| **Proportional Control** | A feedback control algorithm where the actuator control command is directly proportional to the current tracking error. | Day 5 | Day 5 | ⭐⭐⭐⭐⭐ |

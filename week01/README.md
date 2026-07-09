@@ -35,6 +35,7 @@ This folder contains the following labs:
 | [lab06_reward_episode.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab06_reward_episode.py) | Reward & Episode | Logs step rewards and episode truncations under passive control. |
 | [lab07_random_policy.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab07_random_policy.py) | Random Policy | Evaluates an agent sampling random torques uniformly. |
 | [lab08_compare_policies.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab08_compare_policies.py) | Policy Comparison | Compares cumulative returns of random vs fixed policies. |
+| [lab09_simple_controller.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab09_simple_controller.py) | Simple Controller | Introduces proportional controller loop structures. |
 
 ---
 
@@ -56,6 +57,7 @@ python week01/lab05_policy.py
 python week01/lab06_reward_episode.py
 python week01/lab07_random_policy.py
 python week01/lab08_compare_policies.py
+python week01/lab09_simple_controller.py
 ```
 
 *Note: The labs are configured to run in headless mode (no visual window) by default to prevent crashes on systems without a display server. To enable visual rendering for labs, change the `RENDER_MODE` or `render_mode` argument in the scripts to `"human"`.*
