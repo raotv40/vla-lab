@@ -96,3 +96,42 @@ Where:
 - $s_{t+1}$: The resulting state (or observation) at time step $t+1$.
 - $d_t$: The done/termination flag indicating if the transition led to an absorbing state.
 
+---
+
+# Day 4: Policy Dynamics, Exploration, and Exploitation
+
+## Beginner: Explain the concept of a Policy ($\pi$) in Reinforcement Learning, and contrast a Random Policy with a Fixed Policy.
+
+### Answer:
+- **Policy ($\pi$)**: A policy is the "brain" or decision-making rule of an agent. It defines how the agent behaves at any given time by mapping observations (or states) to actions. Mathematically, it is either deterministic ($a = \pi(s)$) or stochastic ($\pi(a \mid s)$).
+- **Random Policy**: A policy where actions are sampled uniformly at random from the action space, independent of observations (i.e., $\pi(a \mid s) = \frac{1}{|A|}$). It represents the maximum exploration baseline.
+- **Fixed Policy**: A policy where the agent executes a constant, pre-determined action profile (e.g. constant torque $\mathbf{a} = [0.1, 0.0]$) at every step, ignoring environmental observations. It is an open-loop controller.
+
+---
+
+## Intermediate: Define "Exploration" and "Exploitation" in RL, and explain why both a pure random policy and a pure fixed policy struggle to solve environments like Reacher.
+
+### Answer:
+- **Exploration**: Gathering new information about the environment by taking novel actions. This helps the agent discover new state-action pairs and locate high-reward regions.
+- **Exploitation**: Maximizing immediate rewards by choosing the best-known actions based on the agent's current knowledge.
+- **Why they fail on Reacher**:
+  - **Pure Random Policy**: Over-explores. It continuously switches joint torques at random, causing the arm to wiggle aimlessly near the origin. It never exploits its observations to steer toward and settle on the target.
+  - **Pure Fixed Policy**: Over-exploits a static assumption. Because it ignores observations (open-loop), it cannot adapt to different randomized target coordinates. If the target spawns in a different quadrant, a constant torque profile will completely miss it.
+  - **Solution**: A closed-loop feedback policy (like Transpose Jacobian or RL network) is required to dynamically exploit observations while exploring paths toward the target.
+
+---
+
+## Advanced: How does the concept of "Episode Return" (Cumulative Reward) change when transitioning from finite-horizon tasks to infinite-horizon tasks? Explain the role of the discount factor ($\gamma$) and why it is mathematically necessary.
+
+### Answer:
+- **Finite Horizon**: The episode has a fixed or bounded length $T$. The return $G_t$ is a simple sum of rewards:
+  $$G_t = \sum_{k=0}^{T-1} R_{t+k+1}$$
+- **Infinite Horizon**: The interaction continues indefinitely ($T = \infty$). The undiscounted sum of rewards could diverge to infinity:
+  $$G_t = \sum_{k=0}^{\infty} R_{t+k+1} = \pm \infty$$
+- **Role of Discount Factor ($\gamma \in [0, 1)$)**: To keep the return mathematically bounded (finite), we discount future rewards:
+  $$G_t = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}$$
+  If the rewards are bounded by a constant $R_{\max}$, the discounted return is guaranteed to converge:
+  $$G_t \leq \frac{R_{\max}}{1 - \gamma}$$
+- **Physical Interpretation**: $\gamma$ balances the agent's preference for immediate gratification ($\gamma \to 0$) vs. long-term planning ($\gamma \to 1$).
+
+

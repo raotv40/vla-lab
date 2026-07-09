@@ -24,7 +24,7 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Closed-Loop Control** | A feedback control system where the controller reads state observations to compute and adjust control actions. | Day 2 | Day 2 | ⭐⭐⭐⭐⭐ |
 | **Forward Kinematics** | Calculating the Cartesian position $(x, y)$ of the end-effector (fingertip) given the joint angles $(\theta_1, \theta_2)$. | Day 2 | Day 2 | ⭐⭐⭐⭐☆ |
 | **Jacobian Matrix** | A matrix of first-order partial derivatives relating joint velocities to linear/angular velocities of the end-effector. | Day 2 | Day 2 | ⭐⭐⭐⭐☆ |
-| **Policy** | The robot's decision-making function that maps observations to actions, determining what the robot should do next. | Day 2 | Day 2 | ⭐⭐☆☆☆ |
+| **Policy** | The robot's decision-making function that maps observations to actions, determining what the robot should do next. | Day 2 | Day 4 | ⭐⭐⭐⭐⭐ |
 | **Sensor** | A device that converts physical information into observations. | Day 2 | Day 2 | ⭐⭐⭐⭐☆ |
 | **State** | The complete description of the environment, including information the robot may not directly access. | Day 2 | Day 2 | ⭐⭐☆☆☆ |
 | **State Space** | The set of all possible states of the environment. | Day 2 | Day 2 | ⭐⭐☆☆☆ |
@@ -35,3 +35,9 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Termination** | The condition where an episode ends naturally because the goal was reached or a failure state was entered. | Day 3 | Day 3 | ⭐⭐⭐⭐⭐ |
 | **Transition** | A single step transition containing $(s_t, a_t, r_t, s_{t+1})$, representing the core unit of interaction in MDPs. | Day 3 | Day 3 | ⭐⭐⭐⭐⭐ |
 | **Truncation** | The condition where an episode ends due to an artificial time-limit or step budget constraint. | Day 3 | Day 3 | ⭐⭐⭐⭐⭐ |
+| **Agent** | The decision-making entity in reinforcement learning that interacts with the environment, observing state transitions and receiving rewards to learn an optimal policy. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
+| **Episode Return** | The total sum of rewards accumulated by the agent throughout a single, complete episode. Equivalent to Return. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
+| **Exploitation** | The decision-making strategy where the agent chooses the best-known action to maximize reward based on current knowledge. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
+| **Exploration** | The decision-making strategy where the agent takes novel actions to gather new information about the environment, potentially discovering higher rewards. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
+| **Fixed Policy** | A deterministic decision-making rule where the agent always selects the same pre-determined action or trajectory regardless of observations. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |
+| **Random Policy** | A policy that selects actions uniformly at random from the action space, used to establish a baseline performance and promote maximum exploration. | Day 4 | Day 4 | ⭐⭐⭐⭐⭐ |

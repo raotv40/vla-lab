@@ -29,9 +29,12 @@ This folder contains the following labs:
 | :--- | :--- | :--- |
 | [lab01_setup.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab01_setup.py) | Setup & Verification | Loads a simple free-falling sphere MJCF model directly in MuJoCo. |
 | [lab02_reacher.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab02_reacher.py) | Gymnasium Integration | Initializes the Reacher-v4 environment and executes a random policy. |
-| [lab03_observation.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab03_observation.py) | Observation Space | Manually parses the 10D observation vector and checks kinematics. |
+| [lab03_observation.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab03_observation.py) | Observation Space | Manually parses the 11D observation vector and checks kinematics. |
 | [lab04_actions.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab04_actions.py) | Action Space | Applies continuous torque control values to analyze motor dynamics. |
 | [lab05_policy.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab05_policy.py) | Feedback Controller | Implements a classic Transpose Jacobian virtual-spring controller. |
+| [lab06_reward_episode.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab06_reward_episode.py) | Reward & Episode | Logs step rewards and episode truncations under passive control. |
+| [lab07_random_policy.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab07_random_policy.py) | Random Policy | Evaluates an agent sampling random torques uniformly. |
+| [lab08_compare_policies.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab08_compare_policies.py) | Policy Comparison | Compares cumulative returns of random vs fixed policies. |
 
 ---
 
@@ -50,9 +53,12 @@ python week01/lab02_reacher.py
 python week01/lab03_observation.py
 python week01/lab04_actions.py
 python week01/lab05_policy.py
+python week01/lab06_reward_episode.py
+python week01/lab07_random_policy.py
+python week01/lab08_compare_policies.py
 ```
 
-*Note: The labs are configured to run in headless mode (no visual window) by default to prevent crashes on systems without a display server. To enable visual rendering for labs 2-5, change the `render_mode` argument in `gym.make()` from `None` to `"human"`.*
+*Note: The labs are configured to run in headless mode (no visual window) by default to prevent crashes on systems without a display server. To enable visual rendering for labs, change the `RENDER_MODE` or `render_mode` argument in the scripts to `"human"`.*
 
 ---
 
