@@ -24,8 +24,8 @@ graph LR
 
 ## Core Signals
 
-- **Setpoint ($r(t)$)**: The target state or reference coordinate we want the robot to reach.
-- **Process Variable ($y(t)$)**: The actual, measured state of the robot (e.g. current joint angle).
-- **Control Output ($u(t)$)**: The action or torque command output by the controller.
-- **Error ($e(t)$)**: The mathematical difference between the setpoint and process variable:
+- **Setpoint** ($r(t)$): The target state or reference coordinate we want the robot to reach.
+- **Process Variable** ($y(t)$): The actual, measured state of the robot (e.g. current joint angle).
+- **Control Output** ($u(t)$): The action or torque command output by the controller.
+- **Error** ($e(t)$): The mathematical difference between the setpoint and process variable:
   $$e(t) = r(t) - y(t)$$
