@@ -48,16 +48,28 @@ vla-lab/
 ├── assets/                  # Simulation visual plots and media assets
 ├── docs/                    # Architectural documents and study notes
 │   ├── concepts/            # Core control theory and robotics concepts
+│   │   ├── action_space.md  # Action space specifications
+│   │   ├── box_space.md     # Gymnasium Box spaces
 │   │   ├── controller.md    # Robot controller definition
+│   │   ├── end_effector.md  # End-effector kinematics
 │   │   ├── error.md         # Tracking error mathematical derivation
+│   │   ├── feature_vector.md # Feature vector representation
 │   │   ├── feedback.md      # Open-loop vs closed-loop feedback systems
-│   │   └── proportional_controller.md # Proportional control laws
+│   │   ├── joint_position.md # Joint positions and angles
+│   │   ├── joint_velocity.md # Joint velocities
+│   │   ├── observation_space.md # Observation space specifications
+│   │   ├── observation_vector.md # Observation vector structure
+│   │   ├── proportional_controller.md # Proportional control laws
+│   │   ├── sin_cos_encoding.md # Trigonometric angle encoding
+│   │   └── target_position.md # Target position reference
 │   ├── journal/             # Daily progress journals
 │   │   ├── day01.md         # Setup and passive simulation
 │   │   ├── day02.md         # Observations, actions, and Jacobian control
 │   │   ├── day03.md         # Reward dynamics and step transitions
 │   │   ├── day04.md         # Random policy and exploration
-│   │   └── day05.md         # Proportional control loops
+│   │   ├── day05.md         # Proportional control loops
+│   │   ├── day06.md         # Deciphering observation vectors
+│   │   └── day06_5.md       # Angle representations and continuous spaces
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -72,7 +84,13 @@ vla-lab/
 │   ├── lab06_reward_episode.py # Reward and episode mechanics
 │   ├── lab07_random_policy.py  # Random policy exploration
 │   ├── lab08_compare_policies.py # Policy comparison metrics
-│   └── lab09_simple_controller.py # Proportional control loop demo
+│   ├── lab09_simple_controller.py # Proportional control loop demo
+│   ├── lab10_observation_decoder.py # Decode observation elements
+│   ├── lab11_observation_analysis.py # Validate trig identities
+│   ├── lab12_observation_changes.py # Track dynamic vs static states
+│   ├── lab13_environment_info.py # Space bounds and precision
+│   ├── lab14_pretty_observation.py # Dynamic tabular logs
+│   └── lab15_angles.py      # arctan2 decoding & discontinuity demo
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -92,6 +110,19 @@ vla-lab/
 
 ---
 
+## 📖 Progress Tracker
+
+- [x] **Day 1**: Setup environment and run passive MuJoCo simulation.
+- [x] **Day 2**: Interface with MuJoCo models using Gymnasium.
+- [x] **Day 3**: Decipher step transitions, rewards, and episodes.
+- [x] **Day 4**: Implement random and fixed action policy comparisons.
+- [x] **Day 5**: Structuring proportional control loops.
+- [x] **Day 6**: Deciphering Reacher-v5 observation vectors.
+- [x] **Day 6.5**: Angle representation and Box spaces.
+- [ ] **Day 7**: Implementing observation-driven P-controllers (Next).
+
+---
+
 ## 📖 Documentation Index
 
 - **[System Architecture](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/architecture.md)**: Learn how MuJoCo, Gymnasium, and Python interact.
@@ -104,3 +135,5 @@ vla-lab/
   - **[Day 3 Journal: Reward & Episode Dynamics](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day03.md)**
   - **[Day 4 Journal: Random Policy & Exploration Baseline](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day04.md)**
   - **[Day 5 Journal: Proportional Control Loops](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day05.md)**
+  - **[Day 6 Journal: Observation Vectors](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day06.md)**
+  - **[Day 6.5 Journal: Continuous Spaces and Angles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day06_5.md)**

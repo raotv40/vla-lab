@@ -36,6 +36,12 @@ This folder contains the following labs:
 | [lab07_random_policy.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab07_random_policy.py) | Random Policy | Evaluates an agent sampling random torques uniformly. |
 | [lab08_compare_policies.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab08_compare_policies.py) | Policy Comparison | Compares cumulative returns of random vs fixed policies. |
 | [lab09_simple_controller.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab09_simple_controller.py) | Simple Controller | Introduces proportional controller loop structures. |
+| [lab10_observation_decoder.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab10_observation_decoder.py) | Observation Decoder | Decodes the 10-dimensional observation vector of Reacher-v5. |
+| [lab11_observation_analysis.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab11_observation_analysis.py) | Observation Analysis | Validates joint trigonometric unit circle positions. |
+| [lab12_observation_changes.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab12_observation_changes.py) | State Dynamics | Tracks static vs dynamic coordinates over simulation steps. |
+| [lab13_environment_info.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab13_environment_info.py) | Space Specifications | Queries bounds, shape, and precision formats of Box spaces. |
+| [lab14_pretty_observation.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab14_pretty_observation.py) | Pretty Table | Dynamic tabular output of Reacher-v5 observations. |
+| [lab15_angles.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab15_angles.py) | Angle Decoding | Uses arctan2 to compute angles and demonstrates boundary jumps. |
 
 ---
 
@@ -58,6 +64,12 @@ python week01/lab06_reward_episode.py
 python week01/lab07_random_policy.py
 python week01/lab08_compare_policies.py
 python week01/lab09_simple_controller.py
+python week01/lab10_observation_decoder.py
+python week01/lab11_observation_analysis.py
+python week01/lab12_observation_changes.py
+python week01/lab13_environment_info.py
+python week01/lab14_pretty_observation.py
+python week01/lab15_angles.py
 ```
 
 *Note: The labs are configured to run in headless mode (no visual window) by default to prevent crashes on systems without a display server. To enable visual rendering for labs, change the `RENDER_MODE` or `render_mode` argument in the scripts to `"human"`.*
