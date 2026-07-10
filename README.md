@@ -50,16 +50,23 @@ vla-lab/
 │   ├── concepts/            # Core control theory and robotics concepts
 │   │   ├── action_space.md  # Action space specifications
 │   │   ├── box_space.md     # Gymnasium Box spaces
+│   │   ├── classical_vs_rl.md # Classical control vs RL vs VLA pipelines
 │   │   ├── controller.md    # Robot controller definition
+│   │   ├── degrees_of_freedom.md # Mechanical DoFs
 │   │   ├── end_effector.md  # End-effector kinematics
 │   │   ├── error.md         # Tracking error mathematical derivation
 │   │   ├── feature_vector.md # Feature vector representation
 │   │   ├── feedback.md      # Open-loop vs closed-loop feedback systems
+│   │   ├── forward_kinematics.md # Coordinate computation (FK)
+│   │   ├── inverse_kinematics.md # Joint setpoints computation (IK)
 │   │   ├── joint_position.md # Joint positions and angles
 │   │   ├── joint_velocity.md # Joint velocities
+│   │   ├── kinematic_chain.md # Joint-link topologies
 │   │   ├── observation_space.md # Observation space specifications
+│   │   ├── observation_vs_state.md # Physical state vs sensor observation
 │   │   ├── observation_vector.md # Observation vector structure
 │   │   ├── proportional_controller.md # Proportional control laws
+│   │   ├── robot_state.md   # Mathematical state vectors
 │   │   ├── sin_cos_encoding.md # Trigonometric angle encoding
 │   │   └── target_position.md # Target position reference
 │   ├── journal/             # Daily progress journals
@@ -69,7 +76,8 @@ vla-lab/
 │   │   ├── day04.md         # Random policy and exploration
 │   │   ├── day05.md         # Proportional control loops
 │   │   ├── day06.md         # Deciphering observation vectors
-│   │   └── day06_5.md       # Angle representations and continuous spaces
+│   │   ├── day06_5.md       # Angle representations and continuous spaces
+│   │   └── day07.md         # Robot state, decoding & kinematics
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -90,7 +98,9 @@ vla-lab/
 │   ├── lab12_observation_changes.py # Track dynamic vs static states
 │   ├── lab13_environment_info.py # Space bounds and precision
 │   ├── lab14_pretty_observation.py # Dynamic tabular logs
-│   └── lab15_angles.py      # arctan2 decoding & discontinuity demo
+│   ├── lab15_angles.py      # arctan2 decoding & discontinuity demo
+│   ├── lab16_decode_observation.py # Reset changes comparison
+│   └── lab17_observation_comparison.py # Velocity vs position dynamics
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -119,7 +129,8 @@ vla-lab/
 - [x] **Day 5**: Structuring proportional control loops.
 - [x] **Day 6**: Deciphering Reacher-v5 observation vectors.
 - [x] **Day 6.5**: Angle representation and Box spaces.
-- [ ] **Day 7**: Implementing observation-driven P-controllers (Next).
+- [x] **Day 7**: Robot state, observation decoding, and kinematics fundamentals.
+- [ ] **Day 8**: Implementing target-seeking feedback controllers (Next).
 
 ---
 
@@ -137,3 +148,4 @@ vla-lab/
   - **[Day 5 Journal: Proportional Control Loops](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day05.md)**
   - **[Day 6 Journal: Observation Vectors](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day06.md)**
   - **[Day 6.5 Journal: Continuous Spaces and Angles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day06_5.md)**
+  - **[Day 7 Journal: Robot State and Kinematics](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day07.md)**
