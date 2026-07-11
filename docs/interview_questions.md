@@ -240,6 +240,61 @@ This eliminates gradient jumps and enables smooth policy optimization.
 2. **Why Accurate State Information is Essential**:
    A feedback controller relies on the calculated error signal to apply restorative joint torques. If joint positions are noisy or lagged, the computed error will be incorrect, causing the controller to apply corrective forces at the wrong time (e.g., pulling after the arm has already passed the target). This delay transforms restorative forces into disruptive forces, creating positive feedback loops that cause target overshooting, wild oscillations, and eventual mechanical instability or solver crash.
 
+---
+
+# Day 8: Forward Kinematics, Planar Geometries and Workspace Analysis
+
+## Beginner: What is a robot's workspace, and how is it calculated for a 2-link planar arm?
+
+### Answer:
+A robot's **workspace** (or work envelope) is the physical space or volume of points reachable by the robot's end-effector tip. 
+For a 2-link planar arm with link lengths $L_1$ and $L_2$:
+- The **Maximum Reach** ($R_{\max}$) is the sum of both link lengths:
+  $$R_{\max} = L_1 + L_2$$
+  Occurs when the elbow is fully extended ($\theta_2 = 0^\circ$).
+- The **Minimum Reach** ($R_{\min}$) is the absolute difference between the link lengths:
+  $$R_{\min} = |L_1 - L_2|$$
+  Occurs when the elbow is fully folded back ($\theta_2 = 180^\circ$).
+The workspace is an **annulus** (ring shape) centered at the base joint with outer radius $R_{\max}$ and inner radius $R_{\min}$. If the target is outside this annulus, it is physically unreachable.
+
+---
+
+## Intermediate: Derive the forward kinematics equations for a 2-link planar manipulator with link lengths $L_1$ and $L_2$, showing the role of absolute elbow angle.
+
+### Answer:
+1. Let the base joint be at origin $(0,0)$. The first joint rotates Link 1 by angle $\theta_1$ relative to the positive x-axis. The elbow position $(x_e, y_e)$ is:
+   $$x_e = L_1 \cos(\theta_1)$$
+   $$y_e = L_1 \sin(\theta_1)$$
+2. The elbow joint angle $\theta_2$ rotates Link 2 relative to the direction extension of Link 1. Therefore, the absolute orientation angle of Link 2 with respect to the horizontal frame is $(\theta_1 + \theta_2)$.
+3. The end-effector coordinates $(x_t, y_t)$ relative to the elbow are $L_2 \cos(\theta_1 + \theta_2)$ and $L_2 \sin(\theta_1 + \theta_2)$.
+4. Adding these coordinates to the elbow position gives the final forward kinematics equations:
+   $$x_t = L_1 \cos(\theta_1) + L_2 \cos(\theta_1 + \theta_2)$$
+   $$y_t = L_1 \sin(\theta_1) + L_2 \sin(\theta_1 + \theta_2)$$
+
+---
+
+## Advanced: Analyze how the sensitivity of the end-effector tip's position coordinates varies with respect to changes in the shoulder joint angle ($\theta_1$) versus the elbow joint angle ($\theta_2$), and discuss the implications of this sensitivity for robot design and control.
+
+### Answer:
+To analyze sensitivity, we calculate the partial derivatives of tip coordinates $(x, y)$ with respect to $\theta_1$ and $\theta_2$:
+1. **Sensitivity to Shoulder angle $\theta_1$**:
+   $$\frac{\partial x}{\partial \theta_1} = -L_1 \sin(\theta_1) - L_2 \sin(\theta_1 + \theta_2)$$
+   $$\frac{\partial y}{\partial \theta_1} = L_1 \cos(\theta_1) + L_2 \cos(\theta_1 + \theta_2)$$
+   The magnitude of this sensitivity vector is:
+   $$\left\|\frac{\partial \mathbf{p}}{\partial \theta_1}\right\| = \sqrt{L_1^2 + L_2^2 + 2L_1L_2\cos(\theta_2)}$$
+   This represents the distance from the base joint to the end-effector tip. When the arm is fully extended, this is $L_1 + L_2$.
+2. **Sensitivity to Elbow angle $\theta_2$**:
+   $$\frac{\partial x}{\partial \theta_2} = -L_2 \sin(\theta_1 + \theta_2)$$
+   $$\frac{\partial y}{\partial \theta_2} = L_2 \cos(\theta_1 + \theta_2)$$
+   The magnitude of this sensitivity vector is:
+   $$\left\|\frac{\partial \mathbf{p}}{\partial \theta_2}\right\| = L_2$$
+   This represents the length of Link 2.
+
+### Implications:
+- **Design/Control**: Since $\left\|\frac{\partial \mathbf{p}}{\partial \theta_1}\right\| \geq \left\|\frac{\partial \mathbf{p}}{\partial \theta_2}\right\|$ (as long as $\cos(\theta_2) > -\frac{L_1^2 + L_2^2}{2L_1L_2}$), the tip position is generally much more sensitive to changes in the shoulder angle $\theta_1$. A small error in $\theta_1$ is amplified by the full length of the arm, whereas an error in $\theta_2$ is only amplified by Link 2.
+- **Actuator Selection**: This requires high-resolution encoders and high-torque motors at the shoulder (base joint) to minimize tracking error amplification, while lighter, lower-power actuators can be placed at the elbow joint to reduce moving mass.
+
+
 
 
 

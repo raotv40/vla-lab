@@ -44,6 +44,8 @@ This folder contains the following labs:
 | [lab15_angles.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab15_angles.py) | Angle Decoding | Uses arctan2 to compute angles and demonstrates boundary jumps. |
 | [lab16_decode_observation.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab16_decode_observation.py) | Reset Comparison | Compares state configurations before and after resetting environment seeds. |
 | [lab17_observation_comparison.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab17_observation_comparison.py) | Position vs Velocity | Evaluates fast-changing joint velocities vs integrated joint positions. |
+| [lab18_forward_kinematics.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab18_forward_kinematics.py) | Forward Kinematics | Computes planar arm coordinates from link lengths and joint angles. |
+| [lab19_plot_robot_arm.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week01/lab19_plot_robot_arm.py) | Arm Plotting | Generates 2D configurations and workspace boundaries via matplotlib. |
 
 ---
 
@@ -74,6 +76,8 @@ python week01/lab14_pretty_observation.py
 python week01/lab15_angles.py
 python week01/lab16_decode_observation.py
 python week01/lab17_observation_comparison.py
+python week01/lab18_forward_kinematics.py
+python week01/lab19_plot_robot_arm.py
 ```
 
 *Note: The labs are configured to run in headless mode (no visual window) by default to prevent crashes on systems without a display server. To enable visual rendering for labs, change the `RENDER_MODE` or `render_mode` argument in the scripts to `"human"`.*

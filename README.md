@@ -46,6 +46,8 @@ The workspace is organized as follows:
 vla-lab/
 ├── .github/                 # GitHub Action workflows and CI configs
 ├── assets/                  # Simulation visual plots and media assets
+│   └── day08/               # Day 8 robot configurations and plots
+│       └── robot_arm.png    # Matplotlib schematic plot of the manipulator
 ├── docs/                    # Architectural documents and study notes
 │   ├── concepts/            # Core control theory and robotics concepts
 │   │   ├── action_space.md  # Action space specifications
@@ -66,9 +68,13 @@ vla-lab/
 │   │   ├── observation_vs_state.md # Physical state vs sensor observation
 │   │   ├── observation_vector.md # Observation vector structure
 │   │   ├── proportional_controller.md # Proportional control laws
+│   │   ├── robot_joints.md  # Joint boundaries and limits
+│   │   ├── robot_links.md   # Link dynamics and mass properties
 │   │   ├── robot_state.md   # Mathematical state vectors
 │   │   ├── sin_cos_encoding.md # Trigonometric angle encoding
-│   │   └── target_position.md # Target position reference
+│   │   ├── target_position.md # Target position reference
+│   │   ├── two_link_robot.md # Planar serial kinematics
+│   │   └── workspace.md     # Reachable work envelopes
 │   ├── journal/             # Daily progress journals
 │   │   ├── day01.md         # Setup and passive simulation
 │   │   ├── day02.md         # Observations, actions, and Jacobian control
@@ -77,7 +83,8 @@ vla-lab/
 │   │   ├── day05.md         # Proportional control loops
 │   │   ├── day06.md         # Deciphering observation vectors
 │   │   ├── day06_5.md       # Angle representations and continuous spaces
-│   │   └── day07.md         # Robot state, decoding & kinematics
+│   │   ├── day07.md         # Robot state, decoding & kinematics
+│   │   └── day08.md         # Forward kinematics and 2-link robot arm
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -100,7 +107,9 @@ vla-lab/
 │   ├── lab14_pretty_observation.py # Dynamic tabular logs
 │   ├── lab15_angles.py      # arctan2 decoding & discontinuity demo
 │   ├── lab16_decode_observation.py # Reset changes comparison
-│   └── lab17_observation_comparison.py # Velocity vs position dynamics
+│   ├── lab17_observation_comparison.py # Velocity vs position dynamics
+│   ├── lab18_forward_kinematics.py # Analytical 2D forward kinematics
+│   └── lab19_plot_robot_arm.py # Matplotlib workspace plotter
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -114,9 +123,8 @@ vla-lab/
 3. **Week 3: Computer Vision**: Integrate cameras in simulation, camera projection matrices, depth maps, and point clouds.
 4. **Week 4: Vision-Language Models**: Prompt VLMs for spatial tasks, parse target coordinates from text, and visual grounding.
 5. **Week 5: Imitation Learning**: Collect expert demonstrations and train Behavioral Cloning (BC) policies.
-6. **Week 6: OpenVLA Foundations**: Load pre-trained foundation models, tokenize actions, and evaluate zero-shot performance.
-7. **Week 7: Fine-Tuning**: Implement Parameter-Efficient Fine-Tuning (PEFT/LoRA) on custom manipulation datasets.
-8. **Week 8: Capstone Project**: Deploy a full VLA control loop in simulation to solve a multi-stage manipulation task.
+6. **Week 7: Fine-Tuning**: Implement Parameter-Efficient Fine-Tuning (PEFT/LoRA) on custom manipulation datasets.
+7. **Week 8: Capstone Project**: Deploy a VLA control loop in simulation to solve a multi-stage manipulation task.
 
 ---
 
@@ -130,7 +138,8 @@ vla-lab/
 - [x] **Day 6**: Deciphering Reacher-v5 observation vectors.
 - [x] **Day 6.5**: Angle representation and Box spaces.
 - [x] **Day 7**: Robot state, observation decoding, and kinematics fundamentals.
-- [ ] **Day 8**: Implementing target-seeking feedback controllers (Next).
+- [x] **Day 8**: Forward kinematics, planar arm geometry, and workspace analysis.
+- [ ] **Day 9**: Trajectory generation and inverse kinematics loops (Next).
 
 ---
 
@@ -149,3 +158,4 @@ vla-lab/
   - **[Day 6 Journal: Observation Vectors](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day06.md)**
   - **[Day 6.5 Journal: Continuous Spaces and Angles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day06_5.md)**
   - **[Day 7 Journal: Robot State and Kinematics](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day07.md)**
+  - **[Day 8 Journal: Forward Kinematics and 2-Link Robot Arm](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day08.md)**
