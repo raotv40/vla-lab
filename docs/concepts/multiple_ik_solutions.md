@@ -17,12 +17,12 @@ For a planar 2-link serial manipulator, there are generally **two solutions** to
          o Base                       o Base  o Elbow
 ```
 
-1. **Elbow-Down Configuration**:
-   - The elbow angle $\theta_2$ is positive ($\theta_2 > 0$).
-   - The elbow joint bends downward.
-2. **Elbow-Up Configuration**:
+1. **Elbow-Up Configuration**:
+   - In this course's standard counterclockwise-positive convention, the elbow angle $\theta_2$ is positive ($\theta_2 > 0$).
+   - The elbow is positioned above the line from the base to the target.
+2. **Elbow-Down Configuration**:
    - The elbow angle $\theta_2$ is negative ($\theta_2 < 0$).
-   - The elbow joint bends upward.
+   - The elbow is positioned below the line from the base to the target.
 
 ---
 
@@ -30,8 +30,8 @@ For a planar 2-link serial manipulator, there are generally **two solutions** to
 
 When solving the elbow angle:
 $$\theta_2 = \pm \arccos\left(\cos(\theta_2)\right)$$
-- The positive sign ($+$) yields the **Elbow-Down** configuration.
-- The negative sign ($-$) yields the **Elbow-Up** configuration.
+- The positive sign ($+$) yields the **Elbow-Up** configuration (returned by `np.arccos()`).
+- The negative sign ($-$) yields the **Elbow-Down** configuration.
 
 Plugging each angle into the shoulder equation:
 $$\theta_1 = \arctan 2(y, x) - \arctan 2(L_2 \sin(\theta_2), L_1 + L_2 \cos(\theta_2))$$

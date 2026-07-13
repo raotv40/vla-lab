@@ -70,9 +70,19 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Robot Geometry** | The link lengths, joint placement directions, and coordinate frames specifying the physical structure of a manipulator. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
 | **Serial Manipulator** | A robot arm configured as a single open kinematic chain of links connected in series. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
 | **Workspace** | The volume or boundary of space reachable by the end-effector tip of a robotic manipulator. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
-| **Elbow-Down Configuration** | The kinematic assembly state where the elbow joint bends downward, corresponding to a positive elbow angle ($\theta_2 > 0$). | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
-| **Elbow-Up Configuration** | The kinematic assembly state where the elbow joint bends upward, corresponding to a negative elbow angle ($\theta_2 < 0$). | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+| **Elbow-Down Configuration** | A valid inverse kinematics solution in which the robot's elbow is positioned below the line from the robot base to the end-effector. In this course, it corresponds to a negative elbow angle ($\theta_2 < 0$), obtained by taking the negative of the elbow-up solution and recomputing $\theta_1$. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+| **Elbow-Up Configuration** | A valid inverse kinematics solution in which the robot's elbow is positioned above the line from the robot base to the end-effector. In this course, using the standard counterclockwise-positive convention, it corresponds to a positive elbow angle ($\theta_2 > 0$) returned by `np.arccos()`. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
 | **IK Solver** | An algebraic or numerical algorithm that computes the necessary joint angles to reach a desired end-effector target pose. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
 | **Reachable Workspace** | The specific subset of coordinate positions that the manipulator can physically touch. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
 | **Target Pose** | The desired coordinate position and rotational orientation defining the goal state of the end-effector. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
 | **Workspace Boundary** | The outer limit (maximum link extension) and inner limit (minimum link folding) of the reachable workspace. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+
+---
+
+> [!NOTE]
+> **Convention Note**  
+> The sign of $\theta_2$ depends on the robot's coordinate system and joint angle convention.  
+> This course uses the standard robotics convention in which counterclockwise rotations are positive.  
+> Other robotics textbooks, simulators, or robot manufacturers may use different sign conventions.  
+> Always verify the convention before interpreting joint angles.
+

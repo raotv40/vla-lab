@@ -24,8 +24,8 @@ Given target coordinates $(x, y)$ and link lengths $L_1, L_2$, IK solves the joi
    Using the law of cosines:
    $$\cos(\theta_2) = \frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2}$$
    $$\theta_2 = \pm \arccos\left(\cos(\theta_2)\right)$$
-   - Positive sign ($+$) yields the **Elbow-Down** configuration.
-   - Negative sign ($-$) yields the **Elbow-Up** configuration.
+   - Positive sign ($+$) yields the **Elbow-Up** configuration (returned by `np.arccos()`).
+   - Negative sign ($-$) yields the **Elbow-Down** configuration.
 2. **Shoulder Angle ($\theta_1$)**:
    $$\theta_1 = \arctan2(y, x) - \arctan 2(L_2 \sin(\theta_2), L_1 + L_2 \cos(\theta_2))$$
 
@@ -47,13 +47,13 @@ The signal flow of kinematics is illustrated below:
   ```text
   Target Coordinate : (+1.20, +0.80)
   Status            : REACHABLE
-    - Elbow-Down Solution: theta1 = +1.46°, theta2 = +74.04°
-    - Elbow-Up Solution  : theta1 = +65.92°, theta2 = -74.04°
+    - Elbow-Up Solution  : theta1 = +1.46°, theta2 = +74.04°
+    - Elbow-Down Solution: theta1 = +65.92°, theta2 = -74.04°
   ---------------------------------------------------------------------------
   Target Coordinate : (+1.40, +0.20)
   Status            : REACHABLE
-    - Elbow-Down Solution: theta1 = -25.32°, theta2 = +77.00°
-    - Elbow-Up Solution  : theta1 = +41.58°, theta2 = -77.00°
+    - Elbow-Up Solution  : theta1 = -25.32°, theta2 = +77.00°
+    - Elbow-Down Solution: theta1 = +41.58°, theta2 = -77.00°
   ```
 
 ### Lab 21: Verification Loop
@@ -75,7 +75,7 @@ The signal flow of kinematics is illustrated below:
 
 ### Exercise 1: Joint Angle Adjustments
 - **Parameters**: Desired target shifted from $(1.2, 0.8) \to (1.4, 0.2)$.
-- **Elbow-Down Solutions**:
+- **Elbow-Up Solutions**:
   - Target $(1.2, 0.8)$: $\theta_1 = +1.46^\circ, \theta_2 = +74.04^\circ$
   - Target $(1.4, 0.2)$: $\theta_1 = -25.32^\circ, \theta_2 = +77.00^\circ$
 - **Observations**:

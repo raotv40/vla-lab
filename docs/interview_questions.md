@@ -316,8 +316,8 @@ When this occurs:
 A 2-link planar arm has exactly two solutions because the elbow angle equation is solved using the cosine function:
 $$\theta_2 = \pm \arccos\left(\cos(\theta_2)\right)$$
 Since $\cos(\theta_2) = \cos(-\theta_2)$, there are two valid angles:
-1. **Elbow-Down ($\theta_2 > 0$)**: The elbow joint bends downward.
-2. **Elbow-Up ($\theta_2 < 0$)**: The elbow joint bends upward.
+1. **Elbow-Up ($\theta_2 > 0$)**: The elbow is positioned above the line from the robot base to the end-effector (the principal solution returned by `np.arccos()`).
+2. **Elbow-Down ($\theta_2 < 0$)**: The elbow is positioned below the line from the robot base to the end-effector (obtained by taking the negative of the elbow-up angle).
 Physically, these solutions represent symmetric postures (reflections) that place the end-effector at the exact same target position. In control loops, the selection between these configurations is based on:
 - **Joint Limits**: Selecting the configuration that does not exceed mechanical boundaries.
 - **Safety / Obstacle Avoidance**: Choosing the posture that does not collide with barriers.
