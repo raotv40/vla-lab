@@ -46,8 +46,10 @@ The workspace is organized as follows:
 vla-lab/
 ├── .github/                 # GitHub Action workflows and CI configs
 ├── assets/                  # Simulation visual plots and media assets
-│   └── day08/               # Day 8 robot configurations and plots
-│       └── robot_arm.png    # Matplotlib schematic plot of the manipulator
+│   ├── day08/               # Day 8 robot configurations and plots
+│   │   └── robot_arm.png    # Matplotlib schematic plot of the manipulator
+│   └── day09/               # Day 9 kinematics flowcharts
+│       └── kinematics_flowchart.png # Technical flowchart of the control pipeline
 ├── docs/                    # Architectural documents and study notes
 │   ├── concepts/            # Core control theory and robotics concepts
 │   │   ├── action_space.md  # Action space specifications
@@ -59,19 +61,24 @@ vla-lab/
 │   │   ├── error.md         # Tracking error mathematical derivation
 │   │   ├── feature_vector.md # Feature vector representation
 │   │   ├── feedback.md      # Open-loop vs closed-loop feedback systems
+│   │   ├── fk_vs_ik.md      # Forward vs Inverse Kinematics mapping
 │   │   ├── forward_kinematics.md # Coordinate computation (FK)
+│   │   ├── ik_verification.md # Verification loop procedures
 │   │   ├── inverse_kinematics.md # Joint setpoints computation (IK)
 │   │   ├── joint_position.md # Joint positions and angles
 │   │   ├── joint_velocity.md # Joint velocities
 │   │   ├── kinematic_chain.md # Joint-link topologies
+│   │   ├── multiple_ik_solutions.md # Elbow-up vs Elbow-down postures
 │   │   ├── observation_space.md # Observation space specifications
 │   │   ├── observation_vs_state.md # Physical state vs sensor observation
 │   │   ├── observation_vector.md # Observation vector structure
 │   │   ├── proportional_controller.md # Proportional control laws
+│   │   ├── reachable_workspace.md # Physical limits and bounds
 │   │   ├── robot_joints.md  # Joint boundaries and limits
 │   │   ├── robot_links.md   # Link dynamics and mass properties
 │   │   ├── robot_state.md   # Mathematical state vectors
 │   │   ├── sin_cos_encoding.md # Trigonometric angle encoding
+│   │   ├── target_pose.md   # Cartesian target descriptors
 │   │   ├── target_position.md # Target position reference
 │   │   ├── two_link_robot.md # Planar serial kinematics
 │   │   └── workspace.md     # Reachable work envelopes
@@ -84,11 +91,16 @@ vla-lab/
 │   │   ├── day06.md         # Deciphering observation vectors
 │   │   ├── day06_5.md       # Angle representations and continuous spaces
 │   │   ├── day07.md         # Robot state, decoding & kinematics
-│   │   └── day08.md         # Forward kinematics and 2-link robot arm
+│   │   ├── day08.md         # Forward kinematics and 2-link robot arm
+│   │   └── day09.md         # Inverse kinematics and verification
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
 │   └── roadmap.md           # 8-week curriculum breakdown
+├── notes/                   # User notes directory
+│   ├── day01.md             # Initial Day 1 notes
+│   ├── day02.md             # Initial Day 2 notes
+│   └── day09.md             # Copy of Day 9 progress log
 ├── week01/                  # Week 1: MuJoCo and Gymnasium Fundamentals
 │   ├── README.md            # Week 1 instructions & theory
 │   ├── lab01_setup.py       # Basic MuJoCo physics test
@@ -109,7 +121,9 @@ vla-lab/
 │   ├── lab16_decode_observation.py # Reset changes comparison
 │   ├── lab17_observation_comparison.py # Velocity vs position dynamics
 │   ├── lab18_forward_kinematics.py # Analytical 2D forward kinematics
-│   └── lab19_plot_robot_arm.py # Matplotlib workspace plotter
+│   ├── lab19_plot_robot_arm.py # Matplotlib workspace plotter
+│   ├── lab20_inverse_kinematics.py # Planar joint angle solver
+│   └── lab21_verify_ik.py   # Closed-loop kinematics validator
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -139,7 +153,8 @@ vla-lab/
 - [x] **Day 6.5**: Angle representation and Box spaces.
 - [x] **Day 7**: Robot state, observation decoding, and kinematics fundamentals.
 - [x] **Day 8**: Forward kinematics, planar arm geometry, and workspace analysis.
-- [ ] **Day 9**: Trajectory generation and inverse kinematics loops (Next).
+- [x] **Day 9**: Inverse kinematics algebraic solvers and verification loops.
+- [ ] **Day 10**: Implementing classical PID joint-space controllers (Next).
 
 ---
 
@@ -159,3 +174,4 @@ vla-lab/
   - **[Day 6.5 Journal: Continuous Spaces and Angles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day06_5.md)**
   - **[Day 7 Journal: Robot State and Kinematics](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day07.md)**
   - **[Day 8 Journal: Forward Kinematics and 2-Link Robot Arm](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day08.md)**
+  - **[Day 9 Journal: Inverse Kinematics and Verification](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day09.md)**

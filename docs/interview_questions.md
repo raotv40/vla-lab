@@ -294,6 +294,51 @@ To analyze sensitivity, we calculate the partial derivatives of tip coordinates 
 - **Design/Control**: Since $\left\|\frac{\partial \mathbf{p}}{\partial \theta_1}\right\| \geq \left\|\frac{\partial \mathbf{p}}{\partial \theta_2}\right\|$ (as long as $\cos(\theta_2) > -\frac{L_1^2 + L_2^2}{2L_1L_2}$), the tip position is generally much more sensitive to changes in the shoulder angle $\theta_1$. A small error in $\theta_1$ is amplified by the full length of the arm, whereas an error in $\theta_2$ is only amplified by Link 2.
 - **Actuator Selection**: This requires high-resolution encoders and high-torque motors at the shoulder (base joint) to minimize tracking error amplification, while lighter, lower-power actuators can be placed at the elbow joint to reduce moving mass.
 
+---
+
+# Day 9: Inverse Kinematics, Multiple Solutions and Solvers
+
+## Beginner: What is the main cause of domain errors in Inverse Kinematics solvers, and how is this handled programmatically?
+
+### Answer:
+The main cause of domain errors is when the target Cartesian coordinate $(x, y)$ falls outside the robot's physical **reachable workspace** (either too far away $r > L_1 + L_2$, or too close $r < |L_1 - L_2|$). 
+When this occurs:
+- The calculated term for the cosine of the elbow angle exceeds the domain $[-1.0, 1.0]$:
+  $$\cos(\theta_2) = \frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2} \notin [-1, 1]$$
+- Passing this value to `arccos()` raises a floating-point domain exception and returns `NaN`.
+- Programmatically, this is handled by **numerical clamping**: wrapping the value in a guard: `np.clip(cos_theta2, -1.0, 1.0)`. This forces the solver to output the closest boundary configuration (fully extended or fully folded) instead of crashing.
+
+---
+
+## Intermediate: Explain why a 2-link planar arm has exactly two inverse kinematics solutions for a reachable target coordinate, and discuss the physical differences between these solutions.
+
+### Answer:
+A 2-link planar arm has exactly two solutions because the elbow angle equation is solved using the cosine function:
+$$\theta_2 = \pm \arccos\left(\cos(\theta_2)\right)$$
+Since $\cos(\theta_2) = \cos(-\theta_2)$, there are two valid angles:
+1. **Elbow-Down ($\theta_2 > 0$)**: The elbow joint bends downward.
+2. **Elbow-Up ($\theta_2 < 0$)**: The elbow joint bends upward.
+Physically, these solutions represent symmetric postures (reflections) that place the end-effector at the exact same target position. In control loops, the selection between these configurations is based on:
+- **Joint Limits**: Selecting the configuration that does not exceed mechanical boundaries.
+- **Safety / Obstacle Avoidance**: Choosing the posture that does not collide with barriers.
+- **Motion Optimization**: Selecting the solution that requires the smallest joint movements (minimizing motor travel).
+
+---
+
+## Advanced: Derive the analytical inverse kinematics equations for a 2-link planar manipulator using the law of cosines, and explain why the numerical verification error is close to machine precision ($10^{-16}$).
+
+### Answer:
+1. **Deriving $\theta_2$**: Let the base be at $(0,0)$, the elbow at $(x_e, y_e)$, and the tip at $(x, y)$. The distance from origin to tip is $r = \sqrt{x^2 + y^2}$. Using the law of cosines on the triangle formed by the origin, elbow, and tip:
+   $$r^2 = L_1^2 + L_2^2 - 2 L_1 L_2 \cos(180^\circ - \theta_2) = L_1^2 + L_2^2 + 2 L_1 L_2 \cos(\theta_2)$$
+   Rearranging gives:
+   $$\cos(\theta_2) = \frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2} \implies \theta_2 = \pm \arccos\left(\cos(\theta_2)\right)$$
+2. **Deriving $\theta_1$**: The angle from the X-axis to the target vector is $\alpha = \arctan2(y, x)$. The angle between Link 1 and the target vector is $\beta$. Using trigonometry:
+   $$\beta = \arctan2(L_2 \sin(\theta_2), L_1 + L_2 \cos(\theta_2))$$
+   Subtracting $\beta$ from $\alpha$ gives the shoulder joint angle $\theta_1$:
+   $$\theta_1 = \arctan2(y, x) - \arctan2(L_2 \sin(\theta_2), L_1 + L_2 \cos(\theta_2))$$
+3. **Verification Error**: When verifying these joint angles by running them through Forward Kinematics, the calculated position matches the target position with an error on the order of $\approx 10^{-16}$ meters. This error is not zero due to **floating-point precision roundoff limits (machine epsilon)** in double-precision `float64` execution on the CPU. The mathematical solution itself is exact, meaning there are no approximation errors.
+
+
 
 
 

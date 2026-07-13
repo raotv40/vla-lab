@@ -60,13 +60,19 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Discrete Space** | A state or action space containing discrete integer choices. | Day 6.5 | Day 6.5 | ⭐⭐⭐⭐⭐ |
 | **Sine Encoding** | Projecting angles onto the y-axis ($y = \sin(\theta)$) to ensure boundary continuity for optimization. | Day 6.5 | Day 6.5 | ⭐⭐⭐⭐⭐ |
 | **Degrees of Freedom** | The number of independent mechanical dimensions or variables required to uniquely specify the state of a system. | Day 7 | Day 7 | ⭐⭐⭐⭐⭐ |
-| **Inverse Kinematics** | Calculating the joint angles required to position the end-effector at a desired Cartesian target coordinate. | Day 7 | Day 7 | ⭐⭐⭐⭐⭐ |
+| **Inverse Kinematics** | Calculating the joint angles required to position the end-effector at a desired Cartesian target coordinate. | Day 7 | Day 9 | ⭐⭐⭐⭐⭐ |
 | **Joint Angles** | The generalized configuration variables specifying the angular orientation of revolute joints. | Day 7 | Day 7 | ⭐⭐⭐⭐⭐ |
 | **Kinematic Chain** | A series of rigid link links connected sequentially by movable joints. | Day 7 | Day 8 | ⭐⭐⭐⭐⭐ |
 | **Observation vs State** | The physical distinction between internal simulator configurations (state) and measurable sensor features (observation). | Day 7 | Day 7 | ⭐⭐⭐⭐⭐ |
 | **Robot State** | The complete physical coordinates ($\mathbf{q}$) and velocities ($\dot{\mathbf{q}}$) representing the mechanical system state. | Day 7 | Day 7 | ⭐⭐⭐⭐⭐ |
 | **Link** | A rigid body component forming the structure of a robot arm mechanism. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
-| **Reachability** | The property describing whether a specific Cartesian target coordinate lies within the physical boundaries of the workspace. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
+| **Reachability** | The property describing whether a specific Cartesian target coordinate lies within the physical boundaries of the workspace. | Day 8 | Day 9 | ⭐⭐⭐⭐⭐ |
 | **Robot Geometry** | The link lengths, joint placement directions, and coordinate frames specifying the physical structure of a manipulator. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
 | **Serial Manipulator** | A robot arm configured as a single open kinematic chain of links connected in series. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
 | **Workspace** | The volume or boundary of space reachable by the end-effector tip of a robotic manipulator. | Day 8 | Day 8 | ⭐⭐⭐⭐⭐ |
+| **Elbow-Down Configuration** | The kinematic assembly state where the elbow joint bends downward, corresponding to a positive elbow angle ($\theta_2 > 0$). | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+| **Elbow-Up Configuration** | The kinematic assembly state where the elbow joint bends upward, corresponding to a negative elbow angle ($\theta_2 < 0$). | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+| **IK Solver** | An algebraic or numerical algorithm that computes the necessary joint angles to reach a desired end-effector target pose. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+| **Reachable Workspace** | The specific subset of coordinate positions that the manipulator can physically touch. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+| **Target Pose** | The desired coordinate position and rotational orientation defining the goal state of the end-effector. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
+| **Workspace Boundary** | The outer limit (maximum link extension) and inner limit (minimum link folding) of the reachable workspace. | Day 9 | Day 9 | ⭐⭐⭐⭐⭐ |
