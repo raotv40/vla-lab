@@ -88,6 +88,15 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Proportional Gain (Kp)** | The spring-stiffness coefficient in a PID controller that scales the current tracking error to determine output torque. | Day 10 | Day 10 | ⭐⭐⭐⭐⭐ |
 | **Settling Time** | The time required for the system's output to enter and remain within a specified tolerance band (typically 2%) of the target setpoint. | Day 10 | Day 10 | ⭐⭐⭐⭐⭐ |
 | **Steady-State Error** | The persistent tracking offset between the desired setpoint and actual state as time approaches infinity. | Day 10 | Day 10 | ⭐⭐⭐⭐⭐ |
+| **Motion Planner** | A software component that calculates collision-free geometric paths or trajectories from start to goal. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Motion Profile** | A speed curve defining speed changes over the course of a trajectory (e.g. S-curve, trapezoidal). | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Path** | A purely geometric description of the sequence of configurations or coordinates visited by the robot, with no time parameterization. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Trajectory** | A time-parameterized path specifying positions, velocities, and accelerations at each intermediate time step. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Trajectory Interpolation** | The mathematical process of computing intermediate positions, velocities, and accelerations between waypoints. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Trajectory Planning** | The process of generating smooth, collision-free joint or Cartesian coordinates over time. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Trapezoidal Velocity Profile** | A motion profile dividing velocity into linear acceleration, cruising speed, and linear deceleration. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Velocity Profile** | A speed curve defining speed changes over a trajectory to match actuator limitations. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **Waypoint** | An intermediate target coordinate along a robot's path or trajectory. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
 
 ---
 

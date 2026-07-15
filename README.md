@@ -50,10 +50,13 @@ vla-lab/
 │   │   └── robot_arm.png    # Matplotlib schematic plot of the manipulator
 │   ├── day09/               # Day 9 kinematics flowcharts
 │   │   └── kinematics_flowchart.png # Technical flowchart of the control pipeline
-│   └── day10/               # Day 10 PID step response plots
-│       ├── p_controller.png   # Proportional step response plot
-│       ├── pi_controller.png  # Proportional-Integral step response plot
-│       └── pid_controller.png # Proportional-Integral-Derivative step response plot
+│   ├── day10/               # Day 10 PID step response plots
+│   │   ├── p_controller.png   # Proportional step response plot
+│   │   ├── pi_controller.png  # Proportional-Integral step response plot
+│   │   └── pid_controller.png # Proportional-Integral-Derivative step response plot
+│   └── day11/               # Day 11 Trajectory generation plots
+│       ├── linear_trajectory.png # LERP trajectory position & velocity plot
+│       └── velocity_profile.png  # Trapezoidal velocity profile comparison plot
 ├── docs/                    # Architectural documents and study notes
 │   ├── concepts/            # Core control theory and robotics concepts
 │   │   ├── action_space.md  # Action space specifications
@@ -76,12 +79,14 @@ vla-lab/
 │   │   ├── joint_position.md # Joint positions and angles
 │   │   ├── joint_velocity.md # Joint velocities
 │   │   ├── kinematic_chain.md # Joint-link topologies
+│   │   ├── motion_profiles.md # S-curves, trapezoids, and cubic splines
 │   │   ├── multiple_ik_solutions.md # Elbow-up vs Elbow-down postures
 │   │   ├── observation_space.md # Observation space specifications
 │   │   ├── observation_vs_state.md # Physical state vs sensor observation
 │   │   ├── observation_vector.md # Observation vector structure
 │   │   ├── oscillation.md   # Dynamic stability and damping ratios
 │   │   ├── overshoot.md     # Transient peak overshoot metrics
+│   │   ├── path_vs_trajectory.md # Geometric paths vs time trajectories
 │   │   ├── pid_controller.md # Discrete PID algorithms
 │   │   ├── pid_tuning.md    # Manual and Ziegler-Nichols tuning strategies
 │   │   ├── pid_vs_rl.md     # Classical PID loops vs RL neural nets
@@ -94,7 +99,11 @@ vla-lab/
 │   │   ├── steady_state_error.md # Steady state offsets under load
 │   │   ├── target_pose.md   # Cartesian target descriptors
 │   │   ├── target_position.md # Target position reference
+│   │   ├── trajectory_generation.md # Interpolation and continuity
+│   │   ├── trajectory_planning.md # The hierarchical motion planning pipeline
+│   │   ├── trapezoidal_velocity_profile.md # Acceleration-cruise-deceleration equations
 │   │   ├── two_link_robot.md # Planar serial kinematics
+│   │   ├── velocity_profile.md # Speed constraints over time
 │   │   └── workspace.md     # Reachable work envelopes
 │   ├── journal/             # Daily progress journals
 │   │   ├── day01.md         # Setup and passive simulation
@@ -107,7 +116,8 @@ vla-lab/
 │   │   ├── day07.md         # Robot state, decoding & kinematics
 │   │   ├── day08.md         # Forward kinematics and 2-link robot arm
 │   │   ├── day09.md         # Inverse kinematics and verification
-│   │   └── day10.md         # PID feedback control loops
+│   │   ├── day10.md         # PID feedback control loops
+│   │   └── day11.md         # Trajectory generation and velocity profiling
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -116,7 +126,8 @@ vla-lab/
 │   ├── day01.md             # Initial Day 1 notes
 │   ├── day02.md             # Initial Day 2 notes
 │   ├── day09.md             # Copy of Day 9 progress log
-│   └── day10.md             # Copy of Day 10 progress log
+│   ├── day10.md             # Copy of Day 10 progress log
+│   └── day11.md             # Copy of Day 11 progress log
 ├── week01/                  # Week 1: MuJoCo and Gymnasium Fundamentals
 │   ├── README.md            # Week 1 instructions & theory
 │   ├── lab01_setup.py       # Basic MuJoCo physics test
@@ -141,9 +152,12 @@ vla-lab/
 │   ├── lab20_inverse_kinematics.py # Planar joint angle solver
 │   └── lab21_verify_ik.py   # Closed-loop kinematics validator
 ├── week02/                  # Week 2: Robotic Control Frameworks
+│   ├── README.md            # Week 2 instructions & theory
 │   ├── lab22_p_controller.py   # Proportional feedback joint simulation
 │   ├── lab23_pi_controller.py  # Proportional-Integral feedback joint simulation
-│   └── lab24_pid_controller.py # Proportional-Integral-Derivative feedback joint simulation
+│   ├── lab24_pid_controller.py # Proportional-Integral-Derivative feedback joint simulation
+│   ├── lab25_linear_trajectory.py # Linear LERP trajectory generator
+│   └── lab26_velocity_profile.py  # Trapezoidal velocity profile generator
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -174,8 +188,11 @@ vla-lab/
 - [x] **Day 7**: Robot state, observation decoding, and kinematics fundamentals.
 - [x] **Day 8**: Forward kinematics, planar arm geometry, and workspace analysis.
 - [x] **Day 9**: Inverse kinematics algebraic solvers and verification loops.
-- [x] **Day 10**: Implementing classical PID joint-space controllers.
-- [ ] **Day 11**: Robot Trajectories, Motion Profiles, and Trajectory Planning (Next).
+- [x] **Day 10A**: Proportional (P) Control Loops.
+- [x] **Day 10B**: Proportional-Integral (PI) Control Loops.
+- [x] **Day 10C**: Proportional-Integral-Derivative (PID) Control Loops.
+- [x] **Day 11**: Trajectory generation and smooth velocity profiling.
+- [ ] **Day 12**: Motion Planning, Configuration Space (C-space), Obstacle Avoidance (A* and RRT) (Next).
 
 ---
 
@@ -197,3 +214,4 @@ vla-lab/
   - **[Day 8 Journal: Forward Kinematics and 2-Link Robot Arm](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day08.md)**
   - **[Day 9 Journal: Inverse Kinematics and Verification](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day09.md)**
   - **[Day 10 Journal: PID Control & Feedback Systems](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day10.md)**
+  - **[Day 11 Journal: Trajectory Generation & Motion Profiles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day11.md)**

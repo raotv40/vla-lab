@@ -384,6 +384,46 @@ In modern Vision-Language-Action (VLA) architectures, PID and RL/VLA are combine
 - **Mid-Level Planning (IK)**: Converts Cartesian targets into joint setpoints.
 - **Low-Level Controller (PID)**: Runs at very high rates ($500\,\text{Hz} - 2\,\text{kHz}$) on local motor drivers, regulating joint torques to track the high-level setpoints with zero steady-state error, providing rapid disturbance rejection and high-frequency stability guarantees.
 
+---
+
+# Day 11: Trajectory Generation and Motion Profiles
+
+## Beginner: What is the difference between a Path and a Trajectory in robotic motion planning?
+
+### Answer:
+- **Path**: A purely geometric description of the sequence of points or configurations that the robot's end-effector or joints must pass through to reach a goal. It is completely independent of time.
+- **Trajectory**: A time-parameterized path. It specifies not only the spatial coordinates that the robot must visit, but also the exact time at which it must reach each coordinate, along with the required velocities, accelerations, and deceleration rates at each intermediate point.
+
+---
+
+## Intermediate: Why is a simple linear (constant velocity) trajectory profile rarely used directly on physical robot actuators, and how does a trapezoidal velocity profile resolve this issue?
+
+### Answer:
+- **Linear Profile Issue**: A linear trajectory uses a constant velocity from start to goal. This means that at the start ($t=0$) and end ($t=t_f$), the velocity must change instantaneously from zero to the cruising speed and back to zero. This step change in velocity requires **infinite acceleration** ($\delta(t)$ impulse acceleration). In a physical system, trying to execute this creates massive torque spikes ($F=ma$) that trigger motor driver over-current faults, cause joint shaking (jerk), and damage mechanical gears.
+- **Trapezoidal Profile Resolution**: It divides the motion into three phases: linear acceleration, constant cruising velocity, and linear deceleration. By ramping the velocity up and down over finite time windows ($t_a$ and $t_d$), it ensures that acceleration remains bounded and continuous inside each phase, eliminating infinite torque spikes.
+
+---
+
+## Advanced: Derive the relationship between total travel distance ($D$), total movement duration ($t_f$), and acceleration time ($t_a$) for a symmetric trapezoidal velocity profile, and discuss how changing path scale (scaling distance) affects peak velocity and acceleration constraints.
+
+### Answer:
+### 1. Derivation:
+For a symmetric profile where acceleration time equals deceleration time ($t_a = t_d$), the total distance $D$ is the area under the trapezoidal velocity curve:
+- The trapezoid has a lower base of length $t_f$, an upper base (cruising phase) of length $t_f - 2t_a$, and a height of $v_{\max}$.
+- The area (distance $D$) is:
+  $$D = \frac{t_f + (t_f - 2 t_a)}{2} \cdot v_{\max} = (t_f - t_a) v_{\max}$$
+- Rearranging gives the peak cruising velocity:
+  $$v_{\max} = \frac{D}{t_f - t_a}$$
+- The constant acceleration is the slope during the acceleration phase:
+  $$a = \frac{v_{\max}}{t_a} = \frac{D}{t_a(t_f - t_a)}$$
+
+### 2. Scaling Effects:
+If we scale the path distance by a factor of $k$ (e.g. changing goal from $10 \to 20$, so $k=2$) while keeping the total duration $t_f$ and acceleration time $t_a$ constant:
+- **Velocity scales linearly**: $v_{\max}' = k \cdot v_{\max}$
+- **Acceleration scales linearly**: $a' = k \cdot a$
+If the scaled target exceeds the physical motor limits ($v_{\max} > v_{\text{motor\_limit}}$ or $a > a_{\text{motor\_limit}}$), the controller will saturate. To scale the distance safely without saturating, the planner must increase the total time $t_f$ to keep peak velocity and acceleration within physical boundaries.
+
+
 
 
 
