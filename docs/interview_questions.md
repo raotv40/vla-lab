@@ -423,6 +423,40 @@ If we scale the path distance by a factor of $k$ (e.g. changing goal from $10 \t
 - **Acceleration scales linearly**: $a' = k \cdot a$
 If the scaled target exceeds the physical motor limits ($v_{\max} > v_{\text{motor\_limit}}$ or $a > a_{\text{motor\_limit}}$), the controller will saturate. To scale the distance safely without saturating, the planner must increase the total time $t_f$ to keep peak velocity and acceleration within physical boundaries.
 
+---
+
+# Day 12: Motion Planning and Configuration Space
+
+## Beginner: What is Configuration Space (C-space), and why is it useful in path planning compared to physical Workspace?
+
+### Answer:
+- **Configuration Space (C-space)**: The parameter space of all possible joint configurations ($\mathbf{q}$) of the robot. A single point in C-space completely defines the posture of the entire robot.
+- **Why it is useful**: In physical Workspace, collision-checking is computationally expensive because it requires calculating mathematical intersections between the multi-link geometric bodies of the robot and obstacles. C-space simplifies this by collapsing the robot into a **single point**. Obstacles are mathematically "inflated" (forming C-obstacles) to represent all configurations where collisions would occur. The path planning problem is reduced to finding a path for a single point moving through the C-space free space ($\mathcal{C}_{\text{free}}$), which simplifies search algorithms.
+
+---
+
+## Intermediate: How does Breadth-First Search (BFS) guarantee finding the shortest path in an unweighted grid, and what is its main drawback in high-dimensional planning?
+
+### Answer:
+- **Shortest Path Guarantee**: BFS utilizes a First-In, First-Out (FIFO) queue to explore nodes. It expands outward uniformly level-by-level (all nodes at distance $d$ are explored before any node at distance $d+1$). In an unweighted grid (where all step transitions have a uniform cost of 1), the first time the goal node is reached, it is guaranteed to be reached via the path with the minimum number of transitions (the shortest path).
+- **Drawback**: BFS is an *uninformed* search algorithm (it does not know the direction of the goal, expanding symmetrically in all directions). In high-dimensional spaces (e.g. 6-DOF arms), the state space suffers from the **curse of dimensionality**. Discretizing 6 joints into 100 bins each yields $100^6 = 10^{12}$ grid nodes. Symmetrical expansion makes BFS computationally intractable and memory-bound.
+
+---
+
+## Advanced: Explain how A* search and Rapidly-exploring Random Trees (RRT) represent opposite approaches (search-based vs. sampling-based) to solve the motion planning problem. Focus on the curse of dimensionality and heuristic functions.
+
+### Answer:
+A* and RRT represent search-based and sampling-based paradigms, respectively:
+
+1. **A* (Search-based / Discretized)**:
+   - **Mechanism**: Explores a discretized grid map of the workspace/C-space. It uses a heuristic function $h(n)$ (like Manhattan or Euclidean distance) to evaluate the remaining cost: $f(n) = g(n) + h(n)$, guiding the search towards the goal to avoid exploring unnecessary regions.
+   - **Limitation**: Suffers directly from the curse of dimensionality. For high-degree-of-freedom robots, discretization requires representing and collision-checking an exponentially large number of grid cells, making grid storage and search intractable.
+
+2. **RRT (Sampling-based / Continuous)**:
+   - **Mechanism**: Operates in continuous C-space without discretizing it. It randomly samples coordinates ($\mathbf{q}_{\text{rand}}$) and builds a tree by extending the nearest node toward the sample by a small step size $\Delta q$.
+   - **Advantage**: It sidesteps the curse of dimensionality by completely avoiding grid discretization. It utilizes "lazy" collision checking, checking only the line segments generated during the extension step. This allows RRT to solve high-dimensional (e.g. 6-DOF or 7-DOF) manipulator path planning tasks in milliseconds. However, unlike A*, standard RRT is only *probabilistically complete* and does not guarantee finding the shortest path (unlike RRT*).
+
+
 
 
 

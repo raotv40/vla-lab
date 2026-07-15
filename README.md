@@ -54,14 +54,19 @@ vla-lab/
 │   │   ├── p_controller.png   # Proportional step response plot
 │   │   ├── pi_controller.png  # Proportional-Integral step response plot
 │   │   └── pid_controller.png # Proportional-Integral-Derivative step response plot
-│   └── day11/               # Day 11 Trajectory generation plots
-│       ├── linear_trajectory.png # LERP trajectory position & velocity plot
-│       └── velocity_profile.png  # Trapezoidal velocity profile comparison plot
+│   ├── day11/               # Day 11 Trajectory generation plots
+│   │   ├── linear_trajectory.png # LERP trajectory position & velocity plot
+│   │   └── velocity_profile.png  # Trapezoidal velocity profile comparison plot
+│   └── day12/               # Day 12 Motion planning plots
+│       ├── occupancy_grid.png # Discrete 2D occupancy grid map
+│       └── bfs_traversal.png  # Breadth-First Search node traversal shortest path plot
 ├── docs/                    # Architectural documents and study notes
 │   ├── concepts/            # Core control theory and robotics concepts
 │   │   ├── action_space.md  # Action space specifications
 │   │   ├── box_space.md     # Gymnasium Box spaces
 │   │   ├── classical_vs_rl.md # Classical control vs RL vs VLA pipelines
+│   │   ├── collision_checking.md # Geometric intersection & grid checks
+│   │   ├── configuration_space.md # Workspace parameters vs C-Space variables
 │   │   ├── control_loop.md  # Feedback loop control blocks
 │   │   ├── controller.md    # Robot controller definition
 │   │   ├── degrees_of_freedom.md # Mechanical DoFs
@@ -79,11 +84,14 @@ vla-lab/
 │   │   ├── joint_position.md # Joint positions and angles
 │   │   ├── joint_velocity.md # Joint velocities
 │   │   ├── kinematic_chain.md # Joint-link topologies
+│   │   ├── motion_planning.md # Collision-free path generation
+│   │   ├── motion_planning_pipeline.md # Complete vision-understanding-motion pipelines
 │   │   ├── motion_profiles.md # S-curves, trapezoids, and cubic splines
 │   │   ├── multiple_ik_solutions.md # Elbow-up vs Elbow-down postures
 │   │   ├── observation_space.md # Observation space specifications
 │   │   ├── observation_vs_state.md # Physical state vs sensor observation
 │   │   ├── observation_vector.md # Observation vector structure
+│   │   ├── occupancy_grid.md # Binary cell grids
 │   │   ├── oscillation.md   # Dynamic stability and damping ratios
 │   │   ├── overshoot.md     # Transient peak overshoot metrics
 │   │   ├── path_vs_trajectory.md # Geometric paths vs time trajectories
@@ -117,7 +125,8 @@ vla-lab/
 │   │   ├── day08.md         # Forward kinematics and 2-link robot arm
 │   │   ├── day09.md         # Inverse kinematics and verification
 │   │   ├── day10.md         # PID feedback control loops
-│   │   └── day11.md         # Trajectory generation and velocity profiling
+│   │   ├── day11.md         # Trajectory generation and velocity profiling
+│   │   └── day12.md         # Motion planning and Configuration Space
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -127,7 +136,8 @@ vla-lab/
 │   ├── day02.md             # Initial Day 2 notes
 │   ├── day09.md             # Copy of Day 9 progress log
 │   ├── day10.md             # Copy of Day 10 progress log
-│   └── day11.md             # Copy of Day 11 progress log
+│   ├── day11.md             # Copy of Day 11 progress log
+│   └── day12.md             # Copy of Day 12 progress log
 ├── week01/                  # Week 1: MuJoCo and Gymnasium Fundamentals
 │   ├── README.md            # Week 1 instructions & theory
 │   ├── lab01_setup.py       # Basic MuJoCo physics test
@@ -157,7 +167,9 @@ vla-lab/
 │   ├── lab23_pi_controller.py  # Proportional-Integral feedback joint simulation
 │   ├── lab24_pid_controller.py # Proportional-Integral-Derivative feedback joint simulation
 │   ├── lab25_linear_trajectory.py # Linear LERP trajectory generator
-│   └── lab26_velocity_profile.py  # Trapezoidal velocity profile generator
+│   ├── lab26_velocity_profile.py  # Trapezoidal velocity profile generator
+│   ├── lab27_grid_planner.py   # Occupancy grid generation and plotting
+│   └── lab28_bfs_planner.py    # Breadth-First Search (BFS) grid path planner
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -192,7 +204,8 @@ vla-lab/
 - [x] **Day 10B**: Proportional-Integral (PI) Control Loops.
 - [x] **Day 10C**: Proportional-Integral-Derivative (PID) Control Loops.
 - [x] **Day 11**: Trajectory generation and smooth velocity profiling.
-- [ ] **Day 12**: Motion Planning, Configuration Space (C-space), Obstacle Avoidance (A* and RRT) (Next).
+- [x] **Day 12**: Motion planning algorithms and Configuration Space (C-space) representation.
+- [ ] **Day 13**: Implementing search-based A* (A-Star) path planners with heuristics (Next).
 
 ---
 
@@ -215,3 +228,4 @@ vla-lab/
   - **[Day 9 Journal: Inverse Kinematics and Verification](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day09.md)**
   - **[Day 10 Journal: PID Control & Feedback Systems](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day10.md)**
   - **[Day 11 Journal: Trajectory Generation & Motion Profiles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day11.md)**
+  - **[Day 12 Journal: Motion Planning & Configuration Space](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day12.md)**

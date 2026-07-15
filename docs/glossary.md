@@ -97,6 +97,22 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Trapezoidal Velocity Profile** | A motion profile dividing velocity into linear acceleration, cruising speed, and linear deceleration. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
 | **Velocity Profile** | A speed curve defining speed changes over a trajectory to match actuator limitations. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
 | **Waypoint** | An intermediate target coordinate along a robot's path or trajectory. | Day 11 | Day 11 | ⭐⭐⭐⭐⭐ |
+| **A*** | An informed graph search algorithm that finds the shortest path using a heuristic to guide node expansion. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Breadth-First Search (BFS)** | An uninformed graph search algorithm that explores nodes level-by-level using a FIFO queue. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Collision Checking** | The algorithmic test of checking whether a robot's configuration intersects with obstacles or its own body. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Configuration** | A single point in configuration space that completely specifies the position and orientation of every link of the robot. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Configuration Space (C-Space)** | The n-dimensional parameter space representing all possible joint configurations of a robot. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Edge** | A link between two vertices (nodes) in a graph representing a valid transition pathway. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Free Space** | The subset of configuration space where the robot does not collide with obstacles or itself. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Graph Search** | Algorithms designed to traverse a graph (set of nodes and edges) to find a target node or shortest path. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Heuristic** | An estimation function used in informed search algorithms (like A*) to predict the remaining cost to the goal. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Joint Space** | The coordinate system of a robot defined by joint parameters (angles or displacements). Equivalent to C-space for simple manipulators. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Motion Planning** | The process of finding a collision-free path for a robot from a starting configuration to a goal. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Node** | A single state coordinate or configuration point in a graph. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Obstacle Space** | The subset of configuration space where the robot's posture results in a collision. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Occupancy Grid** | A multi-dimensional discrete map dividing workspace or configuration space into free and occupied cells. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Rapidly-exploring Random Tree (RRT)** | A sampling-based path planning algorithm that incrementally builds a tree by sampling random nodes. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **Workspace** | The physical 2D or 3D coordinate system where the robot moves and interacts. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
 
 ---
 
