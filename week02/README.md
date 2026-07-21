@@ -15,6 +15,8 @@ This directory covers **Robotic Controllers**, focusing on classical feedback lo
 | [lab26_velocity_profile.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week02/lab26_velocity_profile.py) | Trapezoidal Velocity Profile | Generates smooth trapezoidal velocity profiles to parameterize paths over time. |
 | [lab27_grid_planner.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week02/lab27_grid_planner.py) | Grid Initialization | Discretizes space into a binary occupancy grid mapping obstacles. |
 | [lab28_bfs_planner.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week02/lab28_bfs_planner.py) | Breadth-First Search | Performs discrete grid path planning using a FIFO queue to find shortest paths. |
+| [lab29_manhattan_distance.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week02/lab29_manhattan_distance.py) | Manhattan Heuristic | Computes grid L1 norm distance heuristic and plots orthogonal steps. |
+| [lab30_astar_planner.py](file:///C:/Users/Vishrao/vla-lab/vla-lab/week02/lab30_astar_planner.py) | A* Search | Demonstrates informed graph search using priority queue f(n) = g(n) + h(n). |
 
 ---
 
@@ -35,5 +37,7 @@ python week02/lab25_linear_trajectory.py
 python week02/lab26_velocity_profile.py
 python week02/lab27_grid_planner.py
 python week02/lab28_bfs_planner.py
+python week02/lab29_manhattan_distance.py
+python week02/lab30_astar_planner.py
 ```
-Each script will output text results to the console and save step-response/waveform/grid plots to the respective assets directories (`assets/day10/`, `assets/day11/`, and `assets/day12/`).
+Each script will output text results to the console and save step-response/waveform/grid plots to the respective assets directories (`assets/day10/`, `assets/day11/`, `assets/day12/`, and `assets/day13/`).

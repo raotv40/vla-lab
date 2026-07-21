@@ -57,12 +57,16 @@ vla-lab/
 │   ├── day11/               # Day 11 Trajectory generation plots
 │   │   ├── linear_trajectory.png # LERP trajectory position & velocity plot
 │   │   └── velocity_profile.png  # Trapezoidal velocity profile comparison plot
-│   └── day12/               # Day 12 Motion planning plots
-│       ├── occupancy_grid.png # Discrete 2D occupancy grid map
-│       └── bfs_traversal.png  # Breadth-First Search node traversal shortest path plot
+│   ├── day12/               # Day 12 Motion planning plots
+│   │   ├── occupancy_grid.png # Discrete 2D occupancy grid map
+│   │   └── bfs_traversal.png  # Breadth-First Search node traversal shortest path plot
+│   └── day13/               # Day 13 A* Search plots
+│       ├── manhattan_distance.png # Grid L1 norm distance step plot
+│       └── astar_expansion.png # A* graph node expansion & visitation plot
 ├── docs/                    # Architectural documents and study notes
 │   ├── concepts/            # Core control theory and robotics concepts
 │   │   ├── action_space.md  # Action space specifications
+│   │   ├── astar_algorithm.md # A* search evaluation function f(n) = g(n) + h(n)
 │   │   ├── box_space.md     # Gymnasium Box spaces
 │   │   ├── classical_vs_rl.md # Classical control vs RL vs VLA pipelines
 │   │   ├── collision_checking.md # Geometric intersection & grid checks
@@ -71,6 +75,7 @@ vla-lab/
 │   │   ├── controller.md    # Robot controller definition
 │   │   ├── degrees_of_freedom.md # Mechanical DoFs
 │   │   ├── derivative_control.md # Derivative feedback D term
+│   │   ├── dijkstra_vs_astar.md # Uninformed Dijkstra vs. heuristic-guided A* search
 │   │   ├── end_effector.md  # End-effector kinematics
 │   │   ├── error.md         # Tracking error mathematical derivation
 │   │   ├── feature_vector.md # Feature vector representation
@@ -78,12 +83,15 @@ vla-lab/
 │   │   ├── feedback_control.md # Closed-loop dynamics and disturbance rejection
 │   │   ├── fk_vs_ik.md      # Forward vs Inverse Kinematics mapping
 │   │   ├── forward_kinematics.md # Coordinate computation (FK)
+│   │   ├── graph_search.md  # Adjacency lists and graph data structures
+│   │   ├── heuristics.md    # Admissible vs consistent heuristic functions
 │   │   ├── ik_verification.md # Verification loop procedures
 │   │   ├── integral_control.md # Integral accumulation I term
 │   │   ├── inverse_kinematics.md # Joint setpoints computation (IK)
 │   │   ├── joint_position.md # Joint positions and angles
 │   │   ├── joint_velocity.md # Joint velocities
 │   │   ├── kinematic_chain.md # Joint-link topologies
+│   │   ├── manhattan_distance.md # Grid L1 norm distance heuristic
 │   │   ├── motion_planning.md # Collision-free path generation
 │   │   ├── motion_planning_pipeline.md # Complete vision-understanding-motion pipelines
 │   │   ├── motion_profiles.md # S-curves, trapezoids, and cubic splines
@@ -98,10 +106,12 @@ vla-lab/
 │   │   ├── pid_controller.md # Discrete PID algorithms
 │   │   ├── pid_tuning.md    # Manual and Ziegler-Nichols tuning strategies
 │   │   ├── pid_vs_rl.md     # Classical PID loops vs RL neural nets
+│   │   ├── priority_queue.md # Min-heap binary tree data structures
 │   │   ├── proportional_control.md # Proportional feedback P term
 │   │   ├── reachable_workspace.md # Physical limits and bounds
 │   │   ├── robot_joints.md  # Joint boundaries and limits
 │   │   ├── robot_links.md   # Link dynamics and mass properties
+│   │   ├── robot_path_planning.md # Global vs local planner navigation stacks
 │   │   ├── robot_state.md   # Mathematical state vectors
 │   │   ├── sin_cos_encoding.md # Trigonometric angle encoding
 │   │   ├── steady_state_error.md # Steady state offsets under load
@@ -126,7 +136,8 @@ vla-lab/
 │   │   ├── day09.md         # Inverse kinematics and verification
 │   │   ├── day10.md         # PID feedback control loops
 │   │   ├── day11.md         # Trajectory generation and velocity profiling
-│   │   └── day12.md         # Motion planning and Configuration Space
+│   │   ├── day12.md         # Motion planning and Configuration Space
+│   │   └── day13.md         # A* path planning and heuristic search
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -137,7 +148,8 @@ vla-lab/
 │   ├── day09.md             # Copy of Day 9 progress log
 │   ├── day10.md             # Copy of Day 10 progress log
 │   ├── day11.md             # Copy of Day 11 progress log
-│   └── day12.md             # Copy of Day 12 progress log
+│   ├── day12.md             # Copy of Day 12 progress log
+│   └── day13.md             # Copy of Day 13 progress log
 ├── week01/                  # Week 1: MuJoCo and Gymnasium Fundamentals
 │   ├── README.md            # Week 1 instructions & theory
 │   ├── lab01_setup.py       # Basic MuJoCo physics test
@@ -169,7 +181,9 @@ vla-lab/
 │   ├── lab25_linear_trajectory.py # Linear LERP trajectory generator
 │   ├── lab26_velocity_profile.py  # Trapezoidal velocity profile generator
 │   ├── lab27_grid_planner.py   # Occupancy grid generation and plotting
-│   └── lab28_bfs_planner.py    # Breadth-First Search (BFS) grid path planner
+│   ├── lab28_bfs_planner.py    # Breadth-First Search (BFS) grid path planner
+│   ├── lab29_manhattan_distance.py # Manhattan L1 distance heuristic
+│   └── lab30_astar_planner.py  # A* search algorithm demonstration
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -205,7 +219,8 @@ vla-lab/
 - [x] **Day 10C**: Proportional-Integral-Derivative (PID) Control Loops.
 - [x] **Day 11**: Trajectory generation and smooth velocity profiling.
 - [x] **Day 12**: Motion planning algorithms and Configuration Space (C-space) representation.
-- [ ] **Day 13**: Implementing search-based A* (A-Star) path planners with heuristics (Next).
+- [x] **Day 13**: A* (A-Star) search algorithm and heuristic search principles.
+- [ ] **Day 14**: Implementing full grid-based A* path planners with search visualizations (Next).
 
 ---
 
@@ -229,3 +244,4 @@ vla-lab/
   - **[Day 10 Journal: PID Control & Feedback Systems](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day10.md)**
   - **[Day 11 Journal: Trajectory Generation & Motion Profiles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day11.md)**
   - **[Day 12 Journal: Motion Planning & Configuration Space](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day12.md)**
+  - **[Day 13 Journal: A* Path Planning & Heuristics](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day13.md)**

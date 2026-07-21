@@ -456,6 +456,50 @@ A* and RRT represent search-based and sampling-based paradigms, respectively:
    - **Mechanism**: Operates in continuous C-space without discretizing it. It randomly samples coordinates ($\mathbf{q}_{\text{rand}}$) and builds a tree by extending the nearest node toward the sample by a small step size $\Delta q$.
    - **Advantage**: It sidesteps the curse of dimensionality by completely avoiding grid discretization. It utilizes "lazy" collision checking, checking only the line segments generated during the extension step. This allows RRT to solve high-dimensional (e.g. 6-DOF or 7-DOF) manipulator path planning tasks in milliseconds. However, unlike A*, standard RRT is only *probabilistically complete* and does not guarantee finding the shortest path (unlike RRT*).
 
+---
+
+# Day 13: A* Path Planning and Heuristic Search
+
+## Beginner: What is the cost evaluation function $f(n) = g(n) + h(n)$ in A* search, and what does each term represent?
+
+### Answer:
+In A* search, every candidate node $n$ is evaluated using the cost function:
+$$f(n) = g(n) + h(n)$$
+- **$g(n)$**: The exact accumulated path cost from the starting node to node $n$.
+- **$h(n)$**: The heuristic estimated cost from node $n$ to the goal node.
+- **$f(n)$**: The total estimated cost of the cheapest path constrained to pass through node $n$. A* always expands the node with the lowest $f(n)$ value.
+
+---
+
+## Intermediate: What makes a heuristic function "admissible", and what happens to A* optimality if a heuristic overestimates the remaining cost?
+
+### Answer:
+- **Admissibility Condition**: A heuristic $h(n)$ is admissible if it **never overestimates** the actual true minimum cost to reach the goal: $h(n) \le h^*(n)$ for all nodes $n$.
+- **Effect of Overestimation**: If $h(n) > h^*(n)$ (inadmissible heuristic), A* may overestimate the cost of nodes along the optimal path, causing the priority queue to pop suboptimal nodes first. As a result, A* loses its guarantee of finding the shortest path and may return a suboptimal solution.
+
+---
+
+## Advanced: Explain how changing heuristic values alters A* behavior between Dijkstra's algorithm, optimal A*, and greedy best-first search.
+
+### Answer:
+The magnitude of the heuristic function $h(n)$ controls the trade-off between optimality and search speed:
+
+1. **$h(n) = 0$ (Dijkstra's Algorithm)**:
+   - $f(n) = g(n) + 0 = g(n)$.
+   - Search is uninformed and expands nodes uniformly in all directions (circular wavefront). Guarantees shortest path but explores many redundant nodes.
+
+2. **$0 < h(n) \le h^*(n)$ (Optimal A* Search)**:
+   - $f(n) = g(n) + h(n)$.
+   - Search is informed and directed toward the goal while maintaining the shortest path guarantee.
+
+3. **$h(n) = h^*(n)$ (Ideal / Perfect Heuristic)**:
+   - A* expands only nodes lying directly on the optimal path, exploring the minimum possible number of nodes without wasting computations on dead ends.
+
+4. **$g(n) = 0$ or $h(n) \gg g(n)$ (Greedy Best-First Search)**:
+   - $f(n) \approx h(n)$.
+   - Search relies exclusively on estimated distance to goal, ignoring past path cost. It runs extremely fast but risks taking long, circuitous detours around obstacles and loses optimality.
+
+
 
 
 

@@ -113,6 +113,21 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Occupancy Grid** | A multi-dimensional discrete map dividing workspace or configuration space into free and occupied cells. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
 | **Rapidly-exploring Random Tree (RRT)** | A sampling-based path planning algorithm that incrementally builds a tree by sampling random nodes. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
 | **Workspace** | The physical 2D or 3D coordinate system where the robot moves and interacts. | Day 12 | Day 12 | ⭐⭐⭐⭐⭐ |
+| **A*** | An informed search algorithm evaluating nodes using $f(n) = g(n) + h(n)$ to find optimal shortest paths. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Admissible Heuristic** | A heuristic estimation function that never overestimates the true remaining cost to reach the goal. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Closed Set** | A data structure (hash set) storing nodes already evaluated and expanded during graph search. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Consistent Heuristic (Preview)** | A heuristic satisfying the triangle inequality $h(n) \le c(n, p) + h(p)$ for every neighbor $p$. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Dijkstra's Algorithm** | An uninformed graph search algorithm evaluating nodes purely on accumulated path cost $g(n)$. Equivalent to A* with $h(n)=0$. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Euclidean Distance (Preview)** | Straight-line distance between two points calculated via Pythagorean theorem $d = \sqrt{\Delta x^2 + \Delta y^2}$. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **f(n)** | The total estimated cost of a path passing through node $n$, defined as $f(n) = g(n) + h(n)$. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **g(n)** | The exact accumulated cost to reach node $n$ from the start node. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Graph Search** | Algorithms designed to traverse nodes and edges to find paths. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **h(n)** | The heuristic estimated cost from node $n$ to the goal node. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Heuristic** | Domain-specific estimation function predicting remaining cost to goal. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Manhattan Distance** | The $L_1$ norm distance computed as $|x_1 - x_2| + |y_1 - y_2|$ along grid axes. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Open Set** | A priority queue (min-heap) data structure storing frontier candidate nodes discovered but not yet expanded. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Priority Queue** | A min-heap binary tree data structure popping elements with the lowest numerical priority ($f(n)$). | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **Shortest Path** | The path connecting start to goal with minimum total cost. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
 
 ---
 
