@@ -60,17 +60,24 @@ vla-lab/
 │   ├── day12/               # Day 12 Motion planning plots
 │   │   ├── occupancy_grid.png # Discrete 2D occupancy grid map
 │   │   └── bfs_traversal.png  # Breadth-First Search node traversal shortest path plot
-│   └── day13/               # Day 13 A* Search plots
-│       ├── manhattan_distance.png # Grid L1 norm distance step plot
-│       └── astar_expansion.png # A* graph node expansion & visitation plot
+│   ├── day13/               # Day 13 A* Search plots
+│   │   ├── manhattan_distance.png # Grid L1 norm distance step plot
+│   │   └── astar_expansion.png # A* graph node expansion & visitation plot
+│   └── day14/               # Day 14 Complete A* Grid & Visualization plots
+│       ├── astar_grid.png   # Complete A* grid shortest path plot
+│       ├── lab32_reconstruction.png # Parent tracking came_from backtracking plot
+│       └── lab33_visualization.png # State visualization open/closed set plot
 ├── docs/                    # Architectural documents and study notes
 │   ├── concepts/            # Core control theory and robotics concepts
 │   │   ├── action_space.md  # Action space specifications
+│   │   ├── admissible_heuristics.md # Proof of optimality under non-overestimating heuristics
 │   │   ├── astar_algorithm.md # A* search evaluation function f(n) = g(n) + h(n)
 │   │   ├── box_space.md     # Gymnasium Box spaces
 │   │   ├── classical_vs_rl.md # Classical control vs RL vs VLA pipelines
 │   │   ├── collision_checking.md # Geometric intersection & grid checks
+│   │   ├── complete_astar.md # Full 2D grid A* algorithm architecture
 │   │   ├── configuration_space.md # Workspace parameters vs C-Space variables
+│   │   ├── consistent_heuristics.md # Monotonicity triangle inequality
 │   │   ├── control_loop.md  # Feedback loop control blocks
 │   │   ├── controller.md    # Robot controller definition
 │   │   ├── degrees_of_freedom.md # Mechanical DoFs
@@ -83,6 +90,8 @@ vla-lab/
 │   │   ├── feedback_control.md # Closed-loop dynamics and disturbance rejection
 │   │   ├── fk_vs_ik.md      # Forward vs Inverse Kinematics mapping
 │   │   ├── forward_kinematics.md # Coordinate computation (FK)
+│   │   ├── g_score_vs_f_score.md # Movement cost g(n) vs total priority score f(n)
+│   │   ├── global_path_planning.md # Global A* planning vs local dynamic window avoidance
 │   │   ├── graph_search.md  # Adjacency lists and graph data structures
 │   │   ├── heuristics.md    # Admissible vs consistent heuristic functions
 │   │   ├── ik_verification.md # Verification loop procedures
@@ -100,8 +109,10 @@ vla-lab/
 │   │   ├── observation_vs_state.md # Physical state vs sensor observation
 │   │   ├── observation_vector.md # Observation vector structure
 │   │   ├── occupancy_grid.md # Binary cell grids
+│   │   ├── open_closed_sets.md # Open set priority queue vs closed set hash tables
 │   │   ├── oscillation.md   # Dynamic stability and damping ratios
 │   │   ├── overshoot.md     # Transient peak overshoot metrics
+│   │   ├── path_reconstruction.md # Backtracking via came_from dictionary
 │   │   ├── path_vs_trajectory.md # Geometric paths vs time trajectories
 │   │   ├── pid_controller.md # Discrete PID algorithms
 │   │   ├── pid_tuning.md    # Manual and Ziegler-Nichols tuning strategies
@@ -137,7 +148,8 @@ vla-lab/
 │   │   ├── day10.md         # PID feedback control loops
 │   │   ├── day11.md         # Trajectory generation and velocity profiling
 │   │   ├── day12.md         # Motion planning and Configuration Space
-│   │   └── day13.md         # A* path planning and heuristic search
+│   │   ├── day13.md         # A* path planning and heuristic search
+│   │   └── day14.md         # Complete A* path planning and visualization
 │   ├── architecture.md      # System layout (Python -> Gym -> MuJoCo)
 │   ├── glossary.md          # Key terminology and confidence scores
 │   ├── interview_questions.md # Study guide Q&As for robotics and VLA
@@ -149,7 +161,8 @@ vla-lab/
 │   ├── day10.md             # Copy of Day 10 progress log
 │   ├── day11.md             # Copy of Day 11 progress log
 │   ├── day12.md             # Copy of Day 12 progress log
-│   └── day13.md             # Copy of Day 13 progress log
+│   ├── day13.md             # Copy of Day 13 progress log
+│   └── day14.md             # Copy of Day 14 progress log
 ├── week01/                  # Week 1: MuJoCo and Gymnasium Fundamentals
 │   ├── README.md            # Week 1 instructions & theory
 │   ├── lab01_setup.py       # Basic MuJoCo physics test
@@ -183,7 +196,10 @@ vla-lab/
 │   ├── lab27_grid_planner.py   # Occupancy grid generation and plotting
 │   ├── lab28_bfs_planner.py    # Breadth-First Search (BFS) grid path planner
 │   ├── lab29_manhattan_distance.py # Manhattan L1 distance heuristic
-│   └── lab30_astar_planner.py  # A* search algorithm demonstration
+│   ├── lab30_astar_planner.py  # A* search algorithm demonstration
+│   ├── lab31_astar_grid.py     # Complete grid-based A* path planner
+│   ├── lab32_astar_reconstruction.py # Parent tracking and path reconstruction
+│   └── lab33_astar_visualization.py # Standalone A* grid search visualizer
 ├── requirements.txt         # Core dependencies listing
 └── LICENSE                  # License terms
 ```
@@ -220,7 +236,8 @@ vla-lab/
 - [x] **Day 11**: Trajectory generation and smooth velocity profiling.
 - [x] **Day 12**: Motion planning algorithms and Configuration Space (C-space) representation.
 - [x] **Day 13**: A* (A-Star) search algorithm and heuristic search principles.
-- [ ] **Day 14**: Implementing full grid-based A* path planners with search visualizations (Next).
+- [x] **Day 14**: Complete grid A* algorithm, path reconstruction, and search state visualization.
+- [ ] **Day 15**: Rapidly-exploring Random Trees (RRT) and sampling-based motion planning (Next).
 
 ---
 
@@ -245,3 +262,4 @@ vla-lab/
   - **[Day 11 Journal: Trajectory Generation & Motion Profiles](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day11.md)**
   - **[Day 12 Journal: Motion Planning & Configuration Space](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day12.md)**
   - **[Day 13 Journal: A* Path Planning & Heuristics](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day13.md)**
+  - **[Day 14 Journal: Complete A* & Path Reconstruction](file:///C:/Users/Vishrao/vla-lab/vla-lab/docs/journal/day14.md)**

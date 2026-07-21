@@ -499,6 +499,42 @@ The magnitude of the heuristic function $h(n)$ controls the trade-off between op
    - $f(n) \approx h(n)$.
    - Search relies exclusively on estimated distance to goal, ignoring past path cost. It runs extremely fast but risks taking long, circuitous detours around obstacles and loses optimality.
 
+---
+
+# Day 14: Complete A* Path Planning and Visualization
+
+## Beginner: Explain how the `came_from` dictionary is used during A* search to reconstruct the shortest path after reaching the goal.
+
+### Answer:
+During A* search, whenever a shorter path to a neighbor node $v$ is discovered through node $u$, the planner stores a parent mapping: `came_from[v] = u`. Rather than storing complete path trajectories inside every candidate state in the priority queue, each node points only to its immediate predecessor.
+When the goal node is popped, the planner backtracks through `came_from`:
+$$\text{Goal} \to \text{came\_from}[\text{Goal}] \to \dots \to \text{Start}$$
+Reversing this backtracked sequence yields the exact sequence of waypoints from start to goal.
+
+---
+
+## Intermediate: Compare BFS, Dijkstra's Algorithm, and A* Search in terms of queue data structures, edge cost support, and heuristic guidance.
+
+### Answer:
+
+| Feature | Breadth-First Search (BFS) | Dijkstra's Algorithm | A* Search |
+| :--- | :--- | :--- | :--- |
+| **Queue Type** | FIFO Queue (`deque`) | Priority Queue (Min-Heap) | Priority Queue (Min-Heap) |
+| **Priority Metric** | Arrival order | Accumulated path cost $g(n)$ | Total score $f(n) = g(n) + h(n)$ |
+| **Edge Costs** | Uniform cost only ($c=1$) | Non-negative edge costs | Non-negative edge costs |
+| **Goal Guidance** | None (uninformed) | None (uninformed) | Informed by heuristic $h(n)$ |
+| **Optimality** | Guaranteed on unweighted graphs | Guaranteed on non-negative graphs | Guaranteed if $h(n)$ is admissible |
+
+---
+
+## Advanced: What is the difference between an admissible heuristic and a consistent heuristic, and why does consistency eliminate the need to re-open closed nodes in A*?
+
+### Answer:
+- **Admissibility**: Requires $h(n) \le h^*(n)$ for all nodes $n$. It guarantees that A* will find the optimal path when the search terminates.
+- **Consistency (Monotonicity)**: Requires $h(n) \le c(n, p) + h(p)$ for every node $n$ and neighbor $p$. It enforces that the total estimated cost $f(n)$ along any path is monotonically non-decreasing.
+- **Elimination of Re-openings**: Under a consistent heuristic, when a node $n$ is popped from the Open Set and placed in the Closed Set, its $g(n)$ score is guaranteed to be strictly optimal (the absolute shortest path to $n$ has been found). Because no cheaper path to $n$ can be discovered later in the search, nodes in the Closed Set never need to be re-evaluated or re-inserted into the Open Set.
+
+
 
 
 

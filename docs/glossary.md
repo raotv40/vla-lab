@@ -128,6 +128,14 @@ This living glossary compiles terms and concepts learned during the VLA Learning
 | **Open Set** | A priority queue (min-heap) data structure storing frontier candidate nodes discovered but not yet expanded. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
 | **Priority Queue** | A min-heap binary tree data structure popping elements with the lowest numerical priority ($f(n)$). | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
 | **Shortest Path** | The path connecting start to goal with minimum total cost. | Day 13 | Day 13 | ⭐⭐⭐⭐⭐ |
+| **came_from** | A dictionary tracking parent node relationships during graph search to enable path reconstruction. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
+| **Consistent Heuristic** | A heuristic satisfying $h(n) \le c(n, p) + h(p)$ guaranteeing non-decreasing $f(n)$ values along any path. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
+| **f-score** | The total priority evaluation score $f(n) = g(n) + h(n)$ used by A* to order open set nodes. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
+| **g-score** | The exact accumulated movement cost from the start node to the current node $n$. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
+| **Global Planner** | High-level path planner calculating long-distance global paths over static occupancy grids. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
+| **Local Planner** | High-frequency obstacle avoidance planner dynamically adjusting velocity commands around obstacles. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
+| **Parent Node** | The predecessor state along the path from which the current node was reached. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
+| **Path Reconstruction** | The backtracking process of building a waypoint sequence from goal to start using parent links. | Day 14 | Day 14 | ⭐⭐⭐⭐⭐ |
 
 ---
 
